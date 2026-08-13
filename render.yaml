@@ -1,35 +1,37 @@
 # Render spec template for AI-Study-Companion
-# Replace OWNER/REPO with your GitHub repo and adjust names/values as needed.
-
 services:
   - type: web
     name: study-sphere-backend
-    env: node
+    runtime: node
     plan: free
     repo: https://github.com/kumarmarkandey/AI-study-agent
     branch: main
-    buildCommand: cd backend && npm install
-    startCommand: cd backend && npm start
-    path: backend
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: npm start
     autoDeploy: true
+    envVars:
+      - key: PORT
+        value: 5000
+      - key: DB_HOST
+        sync: false
+      - key: DB_USER
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+      - key: DB_NAME
+        sync: false
+      - key: JWT_SECRET
+        sync: false
 
-  - type: static
+  - type: web
     name: study-sphere-frontend
-    env: static
+    runtime: static
     plan: free
     repo: https://github.com/kumarmarkandey/AI-study-agent
     branch: main
-    buildCommand: cd frontend && npm install && npm run build
-    publishPath: frontend/dist
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
     autoDeploy: true
 
-databases:
-  - name: studysphere-db
-    engine: mysql
-    version: "8"
-    plan: free
-
-# Notes:
-# - Do NOT commit secrets; set sensitive env vars in Render dashboard instead.
-# - Replace the repo URL with your actual GitHub repository URL.
-# - Render may require minor adjustments to fields; treat this as a starting template.

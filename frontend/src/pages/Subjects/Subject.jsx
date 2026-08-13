@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Canvas3D from "../../components/3D/Canvas3D";
 import AIOrb3D from "../../components/3D/AIOrb3D";
+import { API_BASE_URL } from "../../config/api";
 import "./subject.css";
 
 function Subject() {
@@ -54,22 +55,22 @@ function Subject() {
       try {
         const [subjectRes, notesRes, materialsRes, chatsRes, quizzesRes, flashcardsRes] =
           await Promise.all([
-            fetch(`http://localhost:5000/api/subjects/${subjectId}`, {
+            fetch(`${API_BASE_URL}/api/subjects/${subjectId}`, {
               headers: { Authorization: `Bearer ${token}` },
             }),
-            fetch(`http://localhost:5000/api/notes/subject/${subjectId}`, {
+            fetch(`${API_BASE_URL}/api/notes/subject/${subjectId}`, {
               headers: { Authorization: `Bearer ${token}` },
             }),
-            fetch(`http://localhost:5000/api/materials/subject/${subjectId}`, {
+            fetch(`${API_BASE_URL}/api/materials/subject/${subjectId}`, {
               headers: { Authorization: `Bearer ${token}` },
             }),
-            fetch(`http://localhost:5000/api/ai/chat/${subjectId}`, {
+            fetch(`${API_BASE_URL}/api/ai/chat/${subjectId}`, {
               headers: { Authorization: `Bearer ${token}` },
             }),
-            fetch(`http://localhost:5000/api/ai/quizzes/${subjectId}`, {
+            fetch(`${API_BASE_URL}/api/ai/quizzes/${subjectId}`, {
               headers: { Authorization: `Bearer ${token}` },
             }),
-            fetch(`http://localhost:5000/api/ai/flashcards/${subjectId}`, {
+            fetch(`${API_BASE_URL}/api/ai/flashcards/${subjectId}`, {
               headers: { Authorization: `Bearer ${token}` },
             }),
           ]);
@@ -115,7 +116,7 @@ function Subject() {
     setError("");
 
     try {
-      const response = await fetch("http://localhost:5000/api/notes", {
+      const response = await fetch(`${API_BASE_URL}/api/notes`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -146,7 +147,7 @@ function Subject() {
 
   const handleDeleteNote = async (id) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/notes/${id}`, {
+      const response = await fetch(`${API_BASE_URL}/api/notes/${id}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -170,7 +171,7 @@ function Subject() {
     setError("");
 
     try {
-      const response = await fetch("http://localhost:5000/api/materials", {
+      const response = await fetch(`${API_BASE_URL}/api/materials`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -204,7 +205,7 @@ function Subject() {
 
   const handleDeleteMaterial = async (id) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/materials/${id}`, {
+      const response = await fetch(`${API_BASE_URL}/api/materials/${id}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -226,7 +227,7 @@ function Subject() {
     setAiThinking(true);
 
     try {
-      const response = await fetch("http://localhost:5000/api/ai/chat", {
+      const response = await fetch(`${API_BASE_URL}/api/ai/chat`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -252,7 +253,7 @@ function Subject() {
     setError("");
 
     try {
-      const response = await fetch("http://localhost:5000/api/ai/quiz/generate", {
+      const response = await fetch(`${API_BASE_URL}/api/ai/quiz/generate`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -264,7 +265,7 @@ function Subject() {
       const data = await response.json();
       if (response.ok) {
         // Refresh quizzes list
-        const qRes = await fetch(`http://localhost:5000/api/ai/quizzes/${subjectId}`, {
+        const qRes = await fetch(`${API_BASE_URL}/api/ai/quizzes/${subjectId}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         const qData = await qRes.json();
@@ -283,7 +284,7 @@ function Subject() {
 
   const handleStartQuiz = async (quizId) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/ai/quiz/questions/${quizId}`, {
+      const response = await fetch(`${API_BASE_URL}/api/ai/quiz/questions/${quizId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await response.json();
@@ -310,7 +311,7 @@ function Subject() {
     setQuizResult({ score, total: quizQuestions.length });
 
     try {
-      await fetch("http://localhost:5000/api/ai/quiz/submit", {
+      await fetch(`${API_BASE_URL}/api/ai/quiz/submit`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -342,7 +343,7 @@ function Subject() {
     setError("");
 
     try {
-      const response = await fetch("http://localhost:5000/api/ai/flashcards/generate", {
+      const response = await fetch(`${API_BASE_URL}/api/ai/flashcards/generate`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -352,7 +353,7 @@ function Subject() {
       });
 
       if (response.ok) {
-        const fRes = await fetch(`http://localhost:5000/api/ai/flashcards/${subjectId}`, {
+        const fRes = await fetch(`${API_BASE_URL}/api/ai/flashcards/${subjectId}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         const fData = await fRes.json();
@@ -370,7 +371,7 @@ function Subject() {
 
   const handleToggleMastery = async (cardId, currentStatus) => {
     try {
-      await fetch(`http://localhost:5000/api/ai/flashcards/${cardId}/master`, {
+      await fetch(`${API_BASE_URL}/api/ai/flashcards/${cardId}/master`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

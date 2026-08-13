@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Canvas3D from "../../components/3D/Canvas3D";
+import { API_BASE_URL } from "../../config/api";
 import "./Login.css";
 
 function Login() {
@@ -23,7 +24,7 @@ function Login() {
     setError("");
 
     try {
-      const response = await fetch("http://localhost:5000/api/auth/login", {
+      const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),

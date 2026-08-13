@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import Canvas3D from "../components/3D/Canvas3D";
 import AIOrb3D from "../components/3D/AIOrb3D";
+import { API_BASE_URL } from "../config/api";
 import "./Dashboard.css";
 
 function Dashboard() {
@@ -37,13 +38,13 @@ function Dashboard() {
     const loadDashboard = async () => {
       try {
         const [userRes, subjectsRes, statsRes] = await Promise.all([
-          fetch("http://localhost:5000/api/auth/me", {
+          fetch(`${API_BASE_URL}/api/auth/me`, {
             headers: { Authorization: `Bearer ${token}` },
           }),
-          fetch("http://localhost:5000/api/subjects", {
+          fetch(`${API_BASE_URL}/api/subjects`, {
             headers: { Authorization: `Bearer ${token}` },
           }),
-          fetch("http://localhost:5000/api/ai/progress/stats", {
+          fetch(`${API_BASE_URL}/api/ai/progress/stats`, {
             headers: { Authorization: `Bearer ${token}` },
           }),
         ]);
@@ -87,7 +88,7 @@ function Dashboard() {
     setError("");
 
     try {
-      const response = await fetch("http://localhost:5000/api/subjects", {
+      const response = await fetch(`${API_BASE_URL}/api/subjects`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -126,7 +127,7 @@ function Dashboard() {
     }
 
     try {
-      const response = await fetch(`http://localhost:5000/api/subjects/${subjectId}`, {
+      const response = await fetch(`${API_BASE_URL}/api/subjects/${subjectId}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
       });

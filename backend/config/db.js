@@ -15,7 +15,7 @@ const dbConfig = {
 if (process.env.DB_HOST && process.env.DB_HOST !== "localhost") {
   dbConfig.ssl = {
     minVersion: "TLSv1.2",
-    rejectUnauthorized: false,
+    rejectUnauthorized: true,
   };
 }
 

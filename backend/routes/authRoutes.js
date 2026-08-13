@@ -42,7 +42,7 @@ router.post("/signup", async (req, res) => {
     console.error("Signup error:", error);
 
     res.status(500).json({
-      message: "Something went wrong while creating the account.",
+      message: error.message || "Something went wrong while creating the account.",
     });
   }
 });
@@ -105,7 +105,7 @@ router.post("/login", async (req, res) => {
     console.error("Login error:", error);
 
     res.status(500).json({
-      message: "Something went wrong while logging in.",
+      message: error.message || "Something went wrong while logging in.",
     });
   }
 });

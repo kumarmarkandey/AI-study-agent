@@ -1,6 +1,6 @@
 const mysql = require("mysql2");
 
-const db = mysql.createPool({
+const dbConfig = {
   host: process.env.DB_HOST || "localhost",
   user: process.env.DB_USER || "root",
   password: process.env.DB_PASSWORD || "password",
@@ -9,6 +9,16 @@ const db = mysql.createPool({
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,
-});
+};
+
+// TiDB Cloud & Remote Cloud MySQL require SSL/TLS enabled
+if (process.env.DB_HOST && process.env.DB_HOST !== "localhost") {
+  dbConfig.ssl = {
+    minVersion: "TLSv1.2",
+    rejectUnauthorized: false,
+  };
+}
+
+const db = mysql.createPool(dbConfig);
 
 module.exports = db;

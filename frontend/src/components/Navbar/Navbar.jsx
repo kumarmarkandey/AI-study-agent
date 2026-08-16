@@ -47,17 +47,25 @@ function Navbar() {
 
       {menuOpen && (
         <div className="mobile-menu glass-panel">
-          <a href="#features" onClick={() => setMenuOpen(false)}>Features</a>
-          <a href="#how-it-works" onClick={() => setMenuOpen(false)}>How It Works</a>
-          <a href="#about" onClick={() => setMenuOpen(false)}>About</a>
-          {token ? (
-            <Link to="/dashboard" onClick={() => setMenuOpen(false)}>Dashboard</Link>
-          ) : (
-            <>
-              <Link to="/login" onClick={() => setMenuOpen(false)}>Sign In</Link>
-              <Link to="/signup" onClick={() => setMenuOpen(false)}>Get Started</Link>
-            </>
-          )}
+          <a href="#features" className="mobile-link" onClick={() => setMenuOpen(false)}>Features</a>
+          <a href="#how-it-works" className="mobile-link" onClick={() => setMenuOpen(false)}>How It Works</a>
+          <a href="#about" className="mobile-link" onClick={() => setMenuOpen(false)}>About</a>
+          <div className="mobile-actions">
+            {token ? (
+              <Link to="/dashboard" className="btn-3d-primary mobile-btn-full" onClick={() => setMenuOpen(false)}>
+                Go to Dashboard ✨
+              </Link>
+            ) : (
+              <>
+                <Link to="/login" className="btn-3d-secondary mobile-btn-full" onClick={() => setMenuOpen(false)}>
+                  Sign In
+                </Link>
+                <Link to="/signup" className="btn-3d-primary mobile-btn-full" onClick={() => setMenuOpen(false)}>
+                  Get Started
+                </Link>
+              </>
+            )}
+          </div>
         </div>
       )}
     </header>

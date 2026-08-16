@@ -12,7 +12,7 @@
 }
 
 .how-heading h2 {
-  font-size: 2.5rem;
+  font-size: clamp(1.8rem, 4vw + 0.5rem, 2.5rem);
   font-weight: 800;
   margin-bottom: 16px;
 }
@@ -26,8 +26,8 @@
 
 .steps-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  gap: 24px;
 }
 
 .step-card {

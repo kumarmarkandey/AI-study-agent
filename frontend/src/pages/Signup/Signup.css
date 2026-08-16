@@ -3,7 +3,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 60px 20px;
+  padding: 100px 20px 40px 20px;
   position: relative;
   z-index: 1;
 }
@@ -52,23 +52,44 @@
 
 .signup-submit {
   width: 100%;
+  min-height: 48px;
+  font-size: 1rem;
   justify-content: center;
-  margin-top: 8px;
+  margin-top: 12px;
+  touch-action: manipulation;
 }
 
 .login-text {
   margin-top: 24px;
   text-align: center;
   color: var(--text-muted);
-  font-size: 0.9rem;
+  font-size: 0.92rem;
 }
 
 .login-text a {
   color: var(--accent-cyan);
   text-decoration: none;
   font-weight: 600;
+  padding: 6px 8px;
+  display: inline-block;
+  touch-action: manipulation;
 }
 
 .login-text a:hover {
   text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .signup-page {
+    padding: 85px 16px 30px 16px;
+  }
+
+  .signup-card {
+    padding: 28px 20px;
+    transform: none !important;
+  }
+
+  .signup-header h1 {
+    font-size: 1.75rem;
+  }
 }

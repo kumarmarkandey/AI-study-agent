@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { ArrowLeft, Mail, Lock, Eye, EyeOff, Box, Sparkles, LogIn } from "lucide-react";
 import Canvas3D from "../../components/3D/Canvas3D";
 import { API_BASE_URL } from "../../config/api";
 import "./Login.css";
@@ -9,6 +10,7 @@ function Login() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -56,7 +58,12 @@ function Login() {
         <div className="login-card glass-card-3d">
           <div className="login-header">
             <Link to="/" className="brand-back">
-              ← StudySphere<span>AI 3D</span>
+              <ArrowLeft size={16} />
+              <span>StudySphere</span>
+              <span className="logo-ai">AI</span>
+              <span className="badge-3d-tag">
+                <Sparkles size={9} /> 3D
+              </span>
             </Link>
             <h1>Welcome Back</h1>
             <p>Login to access your 3D study workspace.</p>
@@ -67,30 +74,44 @@ function Login() {
 
             <div className="form-group">
               <label htmlFor="email">Email Address</label>
-              <input
-                id="email"
-                type="email"
-                placeholder="name@example.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
+              <div className="input-icon-wrapper">
+                <Mail size={18} className="input-icon" />
+                <input
+                  id="email"
+                  type="email"
+                  placeholder="name@example.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+              </div>
             </div>
 
             <div className="form-group">
               <label htmlFor="password">Password</label>
-              <input
-                id="password"
-                type="password"
-                placeholder="••••••••"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
+              <div className="input-icon-wrapper">
+                <Lock size={18} className="input-icon" />
+                <input
+                  id="password"
+                  type={showPassword ? "text" : "password"}
+                  placeholder="••••••••"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
+                <button
+                  type="button"
+                  className="password-toggle"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                </button>
+              </div>
             </div>
 
             <button type="submit" className="btn-3d-primary login-submit" disabled={loading}>
-              {loading ? "Authenticating..." : "Sign In ✨"}
+              <LogIn size={18} />
+              <span>{loading ? "Authenticating..." : "Sign In"}</span>
             </button>
           </form>
 

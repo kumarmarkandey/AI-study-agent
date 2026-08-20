@@ -17,13 +17,17 @@
 }
 
 .navbar-logo {
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   font-weight: 800;
   color: #ffffff;
   text-decoration: none;
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
+}
+
+.logo-box-icon {
+  color: var(--primary);
 }
 
 .navbar-logo .logo-ai {
@@ -32,13 +36,16 @@
   -webkit-text-fill-color: transparent;
 }
 
-.navbar-logo span:last-child {
-  font-size: 0.75rem;
-  background: rgba(99, 102, 241, 0.2);
+.badge-3d-tag {
+  font-size: 0.72rem;
+  background: rgba(99, 102, 241, 0.15);
   color: var(--accent-cyan);
-  padding: 2px 8px;
-  border-radius: 6px;
-  border: 1px solid rgba(6, 182, 212, 0.4);
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(6, 182, 212, 0.35);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
 }
 
 .navbar-links {

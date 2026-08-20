@@ -77,16 +77,40 @@
   flex-wrap: wrap;
 }
 
+.badge-sparkle {
+  color: #c084fc;
+}
+
+.stat-icon-hdr {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 2px;
+}
+
+.stat-icon-cyan {
+  color: var(--accent-cyan);
+}
+
+.stat-icon-indigo {
+  color: var(--primary);
+}
+
+.stat-icon-purple {
+  color: var(--secondary);
+}
+
 .stat-card {
   padding: 16px 20px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   flex: 1 1 140px;
+  border-radius: var(--radius-md);
 }
 
 .stat-num {
-  font-size: 1.8rem;
+  font-size: 1.7rem;
   font-weight: 800;
 }
 

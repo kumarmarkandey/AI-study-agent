@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { Sparkles, ArrowRight, Compass, Database, Box, BrainCircuit } from "lucide-react";
 import AIOrb3D from "../3D/AIOrb3D";
 import "./hero.css";
 
@@ -10,7 +11,8 @@ function Hero() {
       <div className="hero-content">
         <div className="badge-3d">
           <span className="badge-pulse"></span>
-          <span>🚀 Next-Gen 3D AI Study Companion</span>
+          <Sparkles size={14} className="badge-sparkle" />
+          <span>Next-Gen 3D AI Study Companion</span>
         </div>
 
         <h1 className="hero-title">
@@ -24,26 +26,39 @@ function Hero() {
 
         <div className="hero-buttons">
           <Link to={token ? "/dashboard" : "/signup"} className="btn-3d-primary">
-            {token ? "Open 3D Workspace ✨" : "Get Started Free 🚀"}
+            <span>{token ? "Open 3D Workspace" : "Get Started Free"}</span>
+            <ArrowRight size={18} />
           </Link>
 
           <a href="#features" className="btn-3d-secondary">
-            Explore 3D Tools 👇
+            <Compass size={18} />
+            <span>Explore 3D Tools</span>
           </a>
         </div>
 
         <div className="hero-stats">
           <div className="stat-card glass-panel">
-            <span className="stat-num gradient-text">100%</span>
+            <div className="stat-icon-hdr">
+              <Database size={16} className="stat-icon-cyan" />
+              <span className="stat-num gradient-text">100%</span>
+            </div>
             <span className="stat-label">Live DB Sync</span>
           </div>
+
           <div className="stat-card glass-panel">
-            <span className="stat-num gradient-text">3D</span>
+            <div className="stat-icon-hdr">
+              <Box size={16} className="stat-icon-indigo" />
+              <span className="stat-num gradient-text">3D</span>
+            </div>
             <span className="stat-label">WebGL Visuals</span>
           </div>
+
           <div className="stat-card glass-panel">
-            <span className="stat-num gradient-text">AI</span>
-            <span className="stat-label">Quiz & Flashcard AI</span>
+            <div className="stat-icon-hdr">
+              <BrainCircuit size={16} className="stat-icon-purple" />
+              <span className="stat-num gradient-text">AI</span>
+            </div>
+            <span className="stat-label">Quiz & Flashcards</span>
           </div>
         </div>
       </div>

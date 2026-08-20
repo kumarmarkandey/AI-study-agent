@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { ArrowLeft, User, Mail, Lock, Sparkles, UserPlus, CheckCircle2 } from "lucide-react";
 import Canvas3D from "../../components/3D/Canvas3D";
 import { API_BASE_URL } from "../../config/api";
 import "./Signup.css";
@@ -78,7 +79,12 @@ function Signup() {
         <div className="signup-card glass-card-3d">
           <div className="signup-header">
             <Link to="/" className="brand-back">
-              ← StudySphere<span>AI 3D</span>
+              <ArrowLeft size={16} />
+              <span>StudySphere</span>
+              <span className="logo-ai">AI</span>
+              <span className="badge-3d-tag">
+                <Sparkles size={9} /> 3D
+              </span>
             </Link>
             <h1>Create Account</h1>
             <p>Start building your 3D study space today.</p>
@@ -86,62 +92,80 @@ function Signup() {
 
           <form className="signup-form" onSubmit={handleSubmit}>
             {error && <div className="form-error-alert">{error}</div>}
-            {message && <div className="form-success-alert">{message}</div>}
+            {message && (
+              <div className="form-success-alert">
+                <CheckCircle2 size={16} />
+                <span>{message}</span>
+              </div>
+            )}
 
             <div className="form-group">
               <label htmlFor="name">Full Name</label>
-              <input
-                id="name"
-                name="name"
-                type="text"
-                placeholder="Alex Turner"
-                value={formData.name}
-                onChange={handleChange}
-                required
-              />
+              <div className="input-icon-wrapper">
+                <User size={18} className="input-icon" />
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  placeholder="Alex Turner"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
             </div>
 
             <div className="form-group">
               <label htmlFor="email">Email Address</label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                placeholder="name@example.com"
-                value={formData.email}
-                onChange={handleChange}
-                required
-              />
+              <div className="input-icon-wrapper">
+                <Mail size={18} className="input-icon" />
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="name@example.com"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
             </div>
 
             <div className="form-group">
               <label htmlFor="password">Password</label>
-              <input
-                id="password"
-                name="password"
-                type="password"
-                placeholder="Create password"
-                value={formData.password}
-                onChange={handleChange}
-                required
-              />
+              <div className="input-icon-wrapper">
+                <Lock size={18} className="input-icon" />
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  placeholder="Create password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
             </div>
 
             <div className="form-group">
               <label htmlFor="confirmPassword">Confirm Password</label>
-              <input
-                id="confirmPassword"
-                name="confirmPassword"
-                type="password"
-                placeholder="Repeat password"
-                value={formData.confirmPassword}
-                onChange={handleChange}
-                required
-              />
+              <div className="input-icon-wrapper">
+                <Lock size={18} className="input-icon" />
+                <input
+                  id="confirmPassword"
+                  name="confirmPassword"
+                  type="password"
+                  placeholder="Repeat password"
+                  value={formData.confirmPassword}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
             </div>
 
             <button type="submit" className="btn-3d-primary signup-submit" disabled={loading}>
-              {loading ? "Creating Account..." : "Create 3D Workspace Account ✨"}
+              <UserPlus size={18} />
+              <span>{loading ? "Creating Account..." : "Create 3D Workspace Account"}</span>
             </button>
           </form>
 

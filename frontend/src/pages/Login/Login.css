@@ -83,21 +83,39 @@
   color: var(--text-sub);
 }
 
-.form-group input {
-  background: rgba(15, 23, 42, 0.6);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--radius-sm);
-  padding: 14px 16px;
-  min-height: 48px;
-  color: #ffffff;
-  font-size: 0.98rem;
-  outline: none;
+.input-icon-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.input-icon-wrapper .input-icon {
+  position: absolute;
+  left: 14px;
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+.input-icon-wrapper input {
+  padding-left: 44px !important;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 14px;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 4px;
   transition: var(--transition);
 }
 
-.form-group input:focus {
-  border-color: var(--primary);
-  box-shadow: 0 0 15px var(--primary-glow);
+.password-toggle:hover {
+  color: #ffffff;
 }
 
 .login-submit {

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { Sparkles, LayoutDashboard, LogIn, UserPlus, Menu, X, Box } from "lucide-react";
 import "./Navbar.css";
 
 function Navbar() {
@@ -10,7 +11,12 @@ function Navbar() {
     <header className="navbar-container">
       <nav className="navbar glass-panel">
         <Link to="/" className="navbar-logo">
-          StudySphere<span className="logo-ai">AI</span> <span>3D</span>
+          <Box className="logo-box-icon" size={22} />
+          <span>StudySphere</span>
+          <span className="logo-ai">AI</span>
+          <span className="badge-3d-tag">
+            <Sparkles size={11} /> 3D
+          </span>
         </Link>
 
         <div className="navbar-links">
@@ -22,15 +28,18 @@ function Navbar() {
         <div className="navbar-actions">
           {token ? (
             <Link to="/dashboard" className="btn-3d-primary">
-              Go to Dashboard ✨
+              <LayoutDashboard size={16} />
+              <span>Workspace</span>
             </Link>
           ) : (
             <>
               <Link to="/login" className="login-btn">
-                Sign In
+                <LogIn size={16} />
+                <span>Sign In</span>
               </Link>
               <Link to="/signup" className="btn-3d-primary">
-                Get Started
+                <UserPlus size={16} />
+                <span>Get Started</span>
               </Link>
             </>
           )}
@@ -41,27 +50,48 @@ function Navbar() {
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle menu"
         >
-          {menuOpen ? "✕" : "☰"}
+          {menuOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
       </nav>
 
       {menuOpen && (
         <div className="mobile-menu glass-panel">
-          <a href="#features" className="mobile-link" onClick={() => setMenuOpen(false)}>Features</a>
-          <a href="#how-it-works" className="mobile-link" onClick={() => setMenuOpen(false)}>How It Works</a>
-          <a href="#about" className="mobile-link" onClick={() => setMenuOpen(false)}>About</a>
+          <a href="#features" className="mobile-link" onClick={() => setMenuOpen(false)}>
+            Features
+          </a>
+          <a href="#how-it-works" className="mobile-link" onClick={() => setMenuOpen(false)}>
+            How It Works
+          </a>
+          <a href="#about" className="mobile-link" onClick={() => setMenuOpen(false)}>
+            About
+          </a>
           <div className="mobile-actions">
             {token ? (
-              <Link to="/dashboard" className="btn-3d-primary mobile-btn-full" onClick={() => setMenuOpen(false)}>
-                Go to Dashboard ✨
+              <Link
+                to="/dashboard"
+                className="btn-3d-primary mobile-btn-full"
+                onClick={() => setMenuOpen(false)}
+              >
+                <LayoutDashboard size={18} />
+                <span>Go to Dashboard</span>
               </Link>
             ) : (
               <>
-                <Link to="/login" className="btn-3d-secondary mobile-btn-full" onClick={() => setMenuOpen(false)}>
-                  Sign In
+                <Link
+                  to="/login"
+                  className="btn-3d-secondary mobile-btn-full"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  <LogIn size={18} />
+                  <span>Sign In</span>
                 </Link>
-                <Link to="/signup" className="btn-3d-primary mobile-btn-full" onClick={() => setMenuOpen(false)}>
-                  Get Started
+                <Link
+                  to="/signup"
+                  className="btn-3d-primary mobile-btn-full"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  <UserPlus size={18} />
+                  <span>Get Started</span>
                 </Link>
               </>
             )}

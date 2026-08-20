@@ -7,7 +7,7 @@ services:
     repo: https://github.com/kumarmarkandey/AI-study-agent
     branch: main
     rootDir: backend
-    buildCommand: npm install
+    buildCommand: npm install --no-audit --no-fund
     startCommand: npm start
     autoDeploy: true
     envVars:
@@ -31,7 +31,7 @@ services:
     repo: https://github.com/kumarmarkandey/AI-study-agent
     branch: main
     rootDir: frontend
-    buildCommand: npm install && npm run build
+    buildCommand: npm install --no-audit --no-fund && npm run build
     staticPublishPath: dist
     autoDeploy: true
     envVars:

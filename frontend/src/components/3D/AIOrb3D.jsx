@@ -63,6 +63,17 @@ function AIOrb3D({ isThinking = false }) {
     pointLight.position.set(2, 3, 4);
     scene.add(pointLight);
 
+    const handleResize = () => {
+      if (!container) return;
+      const w = container.clientWidth || 180;
+      const h = container.clientHeight || 180;
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+      renderer.setSize(w, h);
+    };
+
+    window.addEventListener("resize", handleResize);
+
     let animFrame;
     let clock = new THREE.Clock();
 
@@ -85,6 +96,7 @@ function AIOrb3D({ isThinking = false }) {
     animate();
 
     return () => {
+      window.removeEventListener("resize", handleResize);
       cancelAnimationFrame(animFrame);
       if (container && renderer.domElement) {
         container.removeChild(renderer.domElement);

@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
 
 :root {
-  --bg-dark: #080c14;
-  --bg-dark-elevated: #0f172a;
-  --bg-card: rgba(15, 23, 42, 0.75);
-  --bg-card-hover: rgba(24, 34, 58, 0.85);
+  --bg-dark: #030712;
+  --bg-dark-elevated: #0b0f19;
+  --bg-card: rgba(15, 23, 42, 0.65);
+  --bg-card-hover: rgba(24, 34, 58, 0.78);
   
   --glass-border: rgba(255, 255, 255, 0.08);
   --glass-border-glow: rgba(99, 102, 241, 0.35);
@@ -12,7 +12,7 @@
   
   --primary: #6366f1;
   --primary-hover: #4f46e5;
-  --primary-glow: rgba(99, 102, 241, 0.25);
+  --primary-glow: rgba(99, 102, 241, 0.28);
   
   --secondary: #8b5cf6;
   --secondary-glow: rgba(139, 92, 246, 0.25);
@@ -31,7 +31,7 @@
   --radius-lg: 20px;
   --radius-full: 9999px;
   
-  --shadow-3d: 0 12px 30px -10px rgba(0, 0, 0, 0.6), 0 0 20px rgba(99, 102, 241, 0.08);
+  --shadow-3d: 0 12px 30px -10px rgba(0, 0, 0, 0.7), 0 0 20px rgba(99, 102, 241, 0.08);
   --shadow-modal: 0 25px 60px -15px rgba(0, 0, 0, 0.85), 0 0 40px rgba(99, 102, 241, 0.2);
   --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -57,6 +57,8 @@ img, svg, video, iframe {
 
 html, body {
   background-color: var(--bg-dark);
+  background-image: radial-gradient(ellipse at 50% -10%, rgba(99, 102, 241, 0.16), transparent 70%);
+  background-attachment: fixed;
   color: var(--text-main);
   font-family: 'Plus Jakarta Sans', 'Outfit', sans-serif;
   overflow-x: hidden;

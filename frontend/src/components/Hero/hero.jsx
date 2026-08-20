@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Sparkles, ArrowRight, Compass, Database, Box, BrainCircuit, CheckCircle2, FileText, Bot, Layers } from "lucide-react";
+import { Sparkles, ArrowRight, Compass, Database, Box, BrainCircuit, FileText, Bot, Layers, Zap } from "lucide-react";
 import AIOrb3D from "../3D/AIOrb3D";
 import "./hero.css";
 
@@ -10,17 +10,17 @@ function Hero() {
     <section className="hero">
       <div className="hero-content">
         <div className="badge-3d">
-          <Sparkles size={14} className="badge-sparkle" />
-          <span>Next-Gen AI Study Companion Platform</span>
+          <Zap size={13} className="badge-sparkle" />
+          <span>AI-Powered Study Workspace v2.0</span>
         </div>
 
         <h1 className="hero-title">
-          Accelerate Your Learning with <span className="gradient-text">Intelligent Workspaces</span>.
+          Master Any Course with <span className="gradient-text">Intelligent AI Workspaces</span>.
         </h1>
 
         <p className="hero-description">
-          Organize your courses into interactive study hubs. Convert raw notes into automated 
-          multiple-choice quizzes, master definitions with 3D flashcards, and query your material with a context-aware AI tutor.
+          Transform static notes into interactive learning environments. Generate smart multiple-choice 
+          quizzes, master key terms with 3D flashcards, and query your material with a context-aware AI tutor.
         </p>
 
         <div className="hero-feature-tags">
@@ -75,7 +75,7 @@ function Hero() {
           <span className="orb-dot red"></span>
           <span className="orb-dot yellow"></span>
           <span className="orb-dot green"></span>
-          <span className="orb-title">AI Assistant Engine</span>
+          <span className="orb-title">AI Holographic Core</span>
         </div>
         <AIOrb3D isThinking={false} />
         <div className="orb-caption">

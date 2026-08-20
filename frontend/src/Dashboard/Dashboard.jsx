@@ -209,9 +209,7 @@ function Dashboard() {
               <Box size={20} className="logo-box-icon" />
               <span>StudySphere</span>
               <span className="logo-ai">AI</span>
-              <span className="badge-3d-tag">
-                <Sparkles size={10} /> 3D
-              </span>
+              <span className="badge-3d-tag">PRO</span>
             </Link>
             <p className="welcome-tag">
               Welcome back, <strong className="user-name">{user?.name || "Student"}</strong>

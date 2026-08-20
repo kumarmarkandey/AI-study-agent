@@ -738,3 +738,50 @@
   font-size: 0.82rem;
   color: var(--text-muted);
 }
+
+@media (max-width: 768px) {
+  .subject-workspace-page {
+    padding: 85px 3% 40px 3%;
+  }
+  .workspace-tabs {
+    padding: 6px;
+    gap: 6px;
+  }
+  .tab-btn {
+    padding: 8px 14px;
+    font-size: 0.88rem;
+  }
+  .options-grid {
+    grid-template-columns: 1fr;
+  }
+  .flashcard-actions {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .deck-filter-tabs {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .deck-controls {
+    width: 100%;
+  }
+  .deck-controls button {
+    flex: 1;
+  }
+  .keyboard-hint-badge {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .workspace-title {
+    font-size: 1.4rem;
+  }
+  .flashcard-3d-container {
+    height: 280px;
+  }
+  .card-text {
+    font-size: 1.05rem;
+  }
+}

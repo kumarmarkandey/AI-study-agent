@@ -7,10 +7,12 @@ services:
     repo: https://github.com/kumarmarkandey/AI-study-agent
     branch: main
     rootDir: backend
-    buildCommand: npm install --no-audit --no-fund
+    buildCommand: npm ci --prefer-offline --no-audit --no-fund --silent || npm install --prefer-offline --no-audit --no-fund --silent
     startCommand: npm start
     autoDeploy: true
     envVars:
+      - key: NODE_ENV
+        value: production
       - key: PORT
         value: 5000
       - key: DB_HOST
@@ -31,10 +33,13 @@ services:
     repo: https://github.com/kumarmarkandey/AI-study-agent
     branch: main
     rootDir: frontend
-    buildCommand: npm install --no-audit --no-fund && npm run build
+    buildCommand: (npm ci --prefer-offline --no-audit --no-fund --silent || npm install --prefer-offline --no-audit --no-fund --silent) && npm run build
     staticPublishPath: dist
     autoDeploy: true
     envVars:
+      - key: NODE_ENV
+        value: production
       - key: VITE_API_BASE_URL
         sync: false
+
 

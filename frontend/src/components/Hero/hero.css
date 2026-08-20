@@ -1,13 +1,13 @@
 .hero {
-  min-height: 100vh;
-  padding: clamp(100px, 12vh, 140px) 5% 60px 5%;
-  max-width: 1300px;
+  min-height: auto;
+  padding: clamp(80px, 10vh, 105px) 4% 36px 4%;
+  max-width: 1280px;
   width: 100%;
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
   align-items: center;
-  gap: clamp(30px, 5vw, 60px);
+  gap: clamp(24px, 4vw, 40px);
   position: relative;
   z-index: 1;
 }
@@ -23,14 +23,14 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 6px 14px;
+  padding: 5px 12px;
   background: rgba(99, 102, 241, 0.1);
   border: 1px solid rgba(99, 102, 241, 0.25);
   border-radius: var(--radius-full);
-  font-size: 0.84rem;
+  font-size: 0.82rem;
   font-weight: 600;
   color: #a5b4fc;
-  margin-bottom: 20px;
+  margin-bottom: 14px;
 }
 
 .badge-sparkle {
@@ -38,25 +38,45 @@
 }
 
 .hero-title {
-  font-size: clamp(2.2rem, 4.5vw + 0.8rem, 3.5rem);
+  font-size: clamp(2rem, 3.8vw + 0.6rem, 3.2rem);
   font-weight: 800;
-  line-height: 1.15;
-  margin-bottom: 20px;
+  line-height: 1.16;
+  margin-bottom: 14px;
   color: #ffffff;
 }
 
 .hero-description {
-  font-size: clamp(1rem, 1.5vw + 0.5rem, 1.15rem);
+  font-size: clamp(0.95rem, 1.2vw + 0.4rem, 1.08rem);
   color: var(--text-muted);
-  line-height: 1.6;
-  margin-bottom: 36px;
-  max-width: 580px;
+  line-height: 1.55;
+  margin-bottom: 18px;
+  max-width: 600px;
+}
+
+.hero-feature-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.feature-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--glass-border);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-sub);
 }
 
 .hero-buttons {
   display: flex;
-  gap: 16px;
-  margin-bottom: 44px;
+  gap: 14px;
+  margin-bottom: 28px;
   flex-wrap: wrap;
 }
 

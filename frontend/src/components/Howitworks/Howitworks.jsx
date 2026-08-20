@@ -6,19 +6,19 @@ function HowItWorks() {
       number: "01",
       title: "Create Subject Workspaces",
       description:
-        "Organize your courses and study units into dedicated workspace hubs.",
+        "Organize your courses into structured subject hubs. Keep all notes, materials, AI conversations, and quizzes cleanly categorized.",
     },
     {
       number: "02",
-      title: "Upload Notes & Resources",
+      title: "Input Notes & Reference Links",
       description:
-        "Add key notes and reference materials with instant cloud database sync.",
+        "Add comprehensive lecture notes and reference materials. Content automatically syncs to your cloud database in real time.",
     },
     {
       number: "03",
-      title: "Activate AI Assistant & Flashcards",
+      title: "Activate AI Tutor & 3D Flashcards",
       description:
-        "Generate automated AI quizzes, practice 3D flashcards, and chat with AI in real time.",
+        "Query your AI tutor for instant explanations, attempt automated MCQs, and master definitions using interactive 3D flashcards.",
     },
   ];
 
@@ -26,9 +26,9 @@ function HowItWorks() {
     <section className="how-it-works" id="how-it-works">
       <div className="how-heading">
         <span className="section-tag">STREAMLINED WORKFLOW</span>
-        <h2>From Course Material to Active Mastery</h2>
+        <h2>From Raw Course Material to Active Mastery</h2>
         <p>
-          Transform your traditional study routine into an interactive intelligent workspace in 3 steps.
+          Transform traditional static studying into an interactive, AI-driven learning experience in three simple steps.
         </p>
       </div>
 

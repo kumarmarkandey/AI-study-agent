@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Sparkles, ArrowRight, Compass, Database, Box, BrainCircuit } from "lucide-react";
+import { Sparkles, ArrowRight, Compass, Database, Box, BrainCircuit, CheckCircle2, FileText, Bot, Layers } from "lucide-react";
 import AIOrb3D from "../3D/AIOrb3D";
 import "./hero.css";
 
@@ -11,17 +11,25 @@ function Hero() {
       <div className="hero-content">
         <div className="badge-3d">
           <Sparkles size={14} className="badge-sparkle" />
-          <span>Next-Gen AI Study Platform</span>
+          <span>Next-Gen AI Study Companion Platform</span>
         </div>
 
         <h1 className="hero-title">
-          Master Any Subject with <span className="gradient-text">AI Workspaces</span>.
+          Accelerate Your Learning with <span className="gradient-text">Intelligent Workspaces</span>.
         </h1>
 
         <p className="hero-description">
-          Transform your notes into intelligent study spaces. Generate smart quizzes, 
-          master interactive flashcards, and chat with AI in real time.
+          Organize your courses into interactive study hubs. Convert raw notes into automated 
+          multiple-choice quizzes, master definitions with 3D flashcards, and query your material with a context-aware AI tutor.
         </p>
+
+        <div className="hero-feature-tags">
+          <span className="feature-pill"><FileText size={13} /> Notes Vault</span>
+          <span className="feature-pill"><Bot size={13} /> AI Tutor</span>
+          <span className="feature-pill"><BrainCircuit size={13} /> Smart Quizzes</span>
+          <span className="feature-pill"><Layers size={13} /> 3D Flashcards</span>
+          <span className="feature-pill"><Database size={13} /> Cloud Sync</span>
+        </div>
 
         <div className="hero-buttons">
           <Link to={token ? "/dashboard" : "/signup"} className="btn-3d-primary">
@@ -38,7 +46,7 @@ function Hero() {
         <div className="hero-stats">
           <div className="stat-card glass-panel">
             <div className="stat-icon-hdr">
-              <Database size={16} className="stat-icon-cyan" />
+              <Database size={15} className="stat-icon-cyan" />
               <span className="stat-num">100%</span>
             </div>
             <span className="stat-label">Cloud Database Sync</span>
@@ -46,7 +54,7 @@ function Hero() {
 
           <div className="stat-card glass-panel">
             <div className="stat-icon-hdr">
-              <Box size={16} className="stat-icon-indigo" />
+              <Box size={15} className="stat-icon-indigo" />
               <span className="stat-num">3D</span>
             </div>
             <span className="stat-label">Interactive Visuals</span>
@@ -54,7 +62,7 @@ function Hero() {
 
           <div className="stat-card glass-panel">
             <div className="stat-icon-hdr">
-              <BrainCircuit size={16} className="stat-icon-purple" />
+              <BrainCircuit size={15} className="stat-icon-purple" />
               <span className="stat-num">AI</span>
             </div>
             <span className="stat-label">Quizzes & Flashcards</span>

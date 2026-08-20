@@ -1,45 +1,59 @@
-import { BookOpen, Bot, Brain, Layers } from "lucide-react";
+import { BookOpen, Bot, Brain, Layers, FileText, Link2 } from "lucide-react";
 import "./Features.css";
 
 function Features() {
   const features = [
     {
-      icon: <BookOpen size={24} className="feat-icon-indigo" />,
+      icon: <BookOpen size={22} className="feat-icon-indigo" />,
       title: "Subject Workspace Hubs",
       description:
-        "Organize your learning into dedicated subject workspaces with live cloud database synchronization.",
-      badge: "Real-time Sync",
+        "Organize your courses into structured subject workspaces with instant cloud database sync and progress metrics.",
+      badge: "Cloud Sync",
     },
     {
-      icon: <Bot size={24} className="feat-icon-purple" />,
-      title: "Context-Aware AI Chat",
+      icon: <Bot size={22} className="feat-icon-purple" />,
+      title: "Context-Aware AI Tutor",
       description:
-        "Chat with an AI companion that reads and synthesizes your subject notes & study materials.",
+        "Query an intelligent AI assistant that reads your subject notes and materials to provide instant answers and explanations.",
       badge: "AI Powered",
     },
     {
-      icon: <Brain size={24} className="feat-icon-cyan" />,
-      title: "Smart AI Quiz Generator",
+      icon: <Brain size={22} className="feat-icon-cyan" />,
+      title: "Automated Quiz Engine",
       description:
-        "Instantly convert subject notes into multiple-choice quizzes with instant grading & review.",
+        "Turn raw notes into multiple-choice quizzes with automated grading, instant score badges, and detailed question breakdowns.",
       badge: "Smart MCQs",
     },
     {
-      icon: <Layers size={24} className="feat-icon-rose" />,
-      title: "Interactive 3D Flashcards",
+      icon: <Layers size={22} className="feat-icon-rose" />,
+      title: "3D Active Recall Flashcards",
       description:
-        "Master key definitions using interactive 3D flipping flashcards with spaced review tracking.",
+        "Master formulas, terms, and definitions using 3D flipping flashcards equipped with keyboard controls and deck filters.",
       badge: "Active Recall",
+    },
+    {
+      icon: <FileText size={22} className="feat-icon-green" />,
+      title: "Note Reader & Instant Search",
+      description:
+        "Filter through notes instantly with live search and open comprehensive full-screen note reader modals.",
+      badge: "Instant Search",
+    },
+    {
+      icon: <Link2 size={22} className="feat-icon-amber" />,
+      title: "Resource & Reference Vault",
+      description:
+        "Store external course links, documentation, and video resources with smart HTTPS formatting and link previews.",
+      badge: "Resource Links",
     },
   ];
 
   return (
     <section id="features" className="features">
       <div className="features-heading">
-        <span className="section-tag">INTELLIGENT STUDY PLATFORM</span>
-        <h2>Everything You Need to Master Your Courses</h2>
+        <span className="section-tag">COMPREHENSIVE STUDY TOOLKIT</span>
+        <h2>Everything Required for Top Academic Performance</h2>
         <p>
-          Seamlessly integrate AI study tools, active recall workflows, and secure cloud storage.
+          Seamlessly combine active recall workflows, AI tutoring, interactive 3D flashcards, and cloud database storage.
         </p>
       </div>
 

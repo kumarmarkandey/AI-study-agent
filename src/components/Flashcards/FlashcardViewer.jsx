@@ -85,34 +85,34 @@ export function FlashcardViewer({ deck, onUpdateDeck, onBack }) {
 
   if (isCompleted) {
     return (
-      <div className="glass-panel" style={{ padding: '48px', textAlign: 'center', maxWidth: '620px', margin: '40px auto' }}>
+      <div className="glass-panel" style={{ padding: '56px', textAlign: 'center', maxWidth: '680px', margin: '40px auto' }}>
         <div style={{
-          width: '76px',
-          height: '76px',
+          width: '80px',
+          height: '80px',
           borderRadius: '50%',
           background: 'linear-gradient(135deg, #10b981 0%, #34d399 100%)',
           display: 'flex',
           alignItems: 'center',
           justify: 'center',
-          margin: '0 auto 24px',
+          margin: '0 auto 28px',
           boxShadow: 'var(--shadow-glow-emerald)'
         }}>
-          <Award size={40} color="white" />
+          <Award size={44} color="white" />
         </div>
-        <h2 style={{ fontSize: '2rem', fontWeight: 800, marginBottom: '14px', color: 'white' }}>
+        <h2 style={{ fontSize: '2.2rem', fontWeight: 800, marginBottom: '16px', color: 'white' }}>
           Deck Review Complete! 🎉
         </h2>
-        <p style={{ color: 'var(--text-secondary)', marginBottom: '28px', fontSize: '1rem', lineHeight: 1.6 }}>
+        <p style={{ color: 'var(--text-secondary)', marginBottom: '32px', fontSize: '1.05rem', lineHeight: 1.65 }}>
           You reviewed <strong>{sessionReviewed} cards</strong> in <strong>{deck.title}</strong> using the SuperMemo SM-2 spaced repetition algorithm.
         </p>
 
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '16px', flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '18px', flexWrap: 'wrap' }}>
           <button onClick={onBack} className="btn-primary">
-            <ArrowLeft size={16} />
+            <ArrowLeft size={18} />
             <span>Return to Decks</span>
           </button>
           <button onClick={() => { setCurrentIndex(0); setIsFlipped(false); setIsCompleted(false); setSessionReviewed(0); }} className="btn-secondary">
-            <RotateCw size={16} />
+            <RotateCw size={18} />
             <span>Review Again</span>
           </button>
         </div>
@@ -122,9 +122,9 @@ export function FlashcardViewer({ deck, onUpdateDeck, onBack }) {
 
   if (!currentCard) {
     return (
-      <div className="glass-panel" style={{ padding: '36px', textAlign: 'center' }}>
+      <div className="glass-panel" style={{ padding: '40px', textAlign: 'center' }}>
         <p style={{ color: 'var(--text-secondary)' }}>No cards available in this deck.</p>
-        <button onClick={onBack} className="btn-secondary" style={{ marginTop: '18px' }}>
+        <button onClick={onBack} className="btn-secondary" style={{ marginTop: '20px' }}>
           Back to Decks
         </button>
       </div>
@@ -134,27 +134,27 @@ export function FlashcardViewer({ deck, onUpdateDeck, onBack }) {
   const progressPercent = Math.round(((currentIndex + 1) / cards.length) * 100);
 
   return (
-    <div style={{ maxWidth: '740px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '22px' }}>
+    <div style={{ maxWidth: '860px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '28px' }}>
       {/* Top Controls Bar */}
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <button onClick={onBack} className="btn-secondary" style={{ gap: '6px' }}>
-          <ArrowLeft size={16} />
+        <button onClick={onBack} className="btn-secondary" style={{ gap: '8px' }}>
+          <ArrowLeft size={18} />
           <span>Exit Session</span>
         </button>
 
         <div style={{ textAlign: 'center' }}>
-          <span style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--accent-cyan)' }}>
+          <span style={{ fontSize: '0.96rem', fontWeight: 700, color: 'var(--accent-cyan)' }}>
             Card {currentIndex + 1} of {cards.length}
           </span>
         </div>
 
-        <button onClick={toggleStar} className="btn-secondary" style={{ padding: '8px 14px' }}>
-          <Star size={18} color={currentCard.starred ? "#f59e0b" : "var(--text-muted)"} fill={currentCard.starred ? "#f59e0b" : "transparent"} />
+        <button onClick={toggleStar} className="btn-secondary" style={{ padding: '10px 16px' }}>
+          <Star size={20} color={currentCard.starred ? "#f59e0b" : "var(--text-muted)"} fill={currentCard.starred ? "#f59e0b" : "transparent"} />
         </button>
       </div>
 
       {/* Progress Bar */}
-      <div style={{ height: '6px', background: 'rgba(255, 255, 255, 0.08)', borderRadius: '4px', overflow: 'hidden' }}>
+      <div style={{ height: '8px', background: 'rgba(255, 255, 255, 0.08)', borderRadius: '4px', overflow: 'hidden' }}>
         <div style={{ width: `${progressPercent}%`, height: '100%', background: 'linear-gradient(90deg, #38bdf8, #a855f7)', transition: 'width 0.3s ease' }} />
       </div>
 
@@ -168,26 +168,26 @@ export function FlashcardViewer({ deck, onUpdateDeck, onBack }) {
           {/* FRONT */}
           <div className="card-face">
             <div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '28px' }}>
                 <span className="badge badge-cyan">{deck.subject}</span>
-                <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Click or press Space to Flip</span>
+                <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>Click or press Space to Flip</span>
               </div>
-              <h3 style={{ fontSize: '1.45rem', fontWeight: 700, lineHeight: 1.5, color: 'white' }}>
+              <h3 style={{ fontSize: '1.55rem', fontWeight: 700, lineHeight: 1.55, color: 'white' }}>
                 {currentCard.front}
               </h3>
             </div>
 
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '20px', borderTop: '1px solid var(--border-color)' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '24px', borderTop: '1px solid var(--border-color)' }}>
               <button 
                 onClick={(e) => { e.stopPropagation(); handleSpeak(currentCard.front); }}
                 className="btn-secondary"
-                style={{ padding: '6px 14px', fontSize: '0.82rem' }}
+                style={{ padding: '8px 16px', fontSize: '0.86rem' }}
               >
-                <Volume2 size={16} />
+                <Volume2 size={18} />
                 <span>Listen</span>
               </button>
-              <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: '5px' }}>
-                <CornerDownLeft size={14} /> Flip Card
+              <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <CornerDownLeft size={16} /> Flip Card
               </span>
             </div>
           </div>
@@ -195,38 +195,38 @@ export function FlashcardViewer({ deck, onUpdateDeck, onBack }) {
           {/* BACK */}
           <div className="card-face card-face-back">
             <div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '28px' }}>
                 <span className="badge badge-violet">Answer & Explanation</span>
-                <span style={{ fontSize: '0.8rem', color: 'var(--accent-violet)', fontWeight: 600 }}>SRS Ease: {currentCard.easeFactor}x</span>
+                <span style={{ fontSize: '0.85rem', color: 'var(--accent-violet)', fontWeight: 600 }}>SRS Ease: {currentCard.easeFactor}x</span>
               </div>
-              <div style={{ fontSize: '1.2rem', lineHeight: 1.6, whiteSpace: 'pre-wrap', color: '#f1f5f9' }}>
+              <div style={{ fontSize: '1.25rem', lineHeight: 1.7, whiteSpace: 'pre-wrap', color: '#f1f5f9' }}>
                 {currentCard.back}
               </div>
             </div>
 
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '20px', borderTop: '1px solid var(--border-color)' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '24px', borderTop: '1px solid var(--border-color)' }}>
               <button 
                 onClick={(e) => { e.stopPropagation(); handleSpeak(currentCard.back); }}
                 className="btn-secondary"
-                style={{ padding: '6px 14px', fontSize: '0.82rem' }}
+                style={{ padding: '8px 16px', fontSize: '0.86rem' }}
               >
-                <Volume2 size={16} />
+                <Volume2 size={18} />
                 <span>Listen Answer</span>
               </button>
-              <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Rate recall below (1-4)</span>
+              <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>Rate recall below (1-4)</span>
             </div>
           </div>
         </div>
       </div>
 
-      {/* SRS Rating Action Buttons (Shown when flipped) */}
+      {/* SRS Rating Action Buttons */}
       {isFlipped ? (
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '12px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '16px' }}>
           <button 
             onClick={() => handleRating(1)} 
             style={{
-              padding: '14px 10px',
-              borderRadius: '14px',
+              padding: '16px 12px',
+              borderRadius: '16px',
               border: '1px solid rgba(244, 63, 94, 0.4)',
               background: 'rgba(244, 63, 94, 0.15)',
               color: '#f43f5e',
@@ -235,19 +235,19 @@ export function FlashcardViewer({ deck, onUpdateDeck, onBack }) {
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
-              gap: '4px',
+              gap: '6px',
               transition: 'all 0.2s ease'
             }}
           >
-            <span style={{ fontSize: '0.92rem' }}>1. Again</span>
-            <span style={{ fontSize: '0.72rem', opacity: 0.8 }}>1 day</span>
+            <span style={{ fontSize: '0.98rem' }}>1. Again</span>
+            <span style={{ fontSize: '0.76rem', opacity: 0.8 }}>1 day</span>
           </button>
 
           <button 
             onClick={() => handleRating(2)} 
             style={{
-              padding: '14px 10px',
-              borderRadius: '14px',
+              padding: '16px 12px',
+              borderRadius: '16px',
               border: '1px solid rgba(245, 158, 11, 0.4)',
               background: 'rgba(245, 158, 11, 0.15)',
               color: '#f59e0b',
@@ -256,19 +256,19 @@ export function FlashcardViewer({ deck, onUpdateDeck, onBack }) {
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
-              gap: '4px',
+              gap: '6px',
               transition: 'all 0.2s ease'
             }}
           >
-            <span style={{ fontSize: '0.92rem' }}>2. Hard</span>
-            <span style={{ fontSize: '0.72rem', opacity: 0.8 }}>2 days</span>
+            <span style={{ fontSize: '0.98rem' }}>2. Hard</span>
+            <span style={{ fontSize: '0.76rem', opacity: 0.8 }}>2 days</span>
           </button>
 
           <button 
             onClick={() => handleRating(3)} 
             style={{
-              padding: '14px 10px',
-              borderRadius: '14px',
+              padding: '16px 12px',
+              borderRadius: '16px',
               border: '1px solid rgba(56, 189, 248, 0.4)',
               background: 'rgba(56, 189, 248, 0.15)',
               color: '#38bdf8',
@@ -277,19 +277,19 @@ export function FlashcardViewer({ deck, onUpdateDeck, onBack }) {
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
-              gap: '4px',
+              gap: '6px',
               transition: 'all 0.2s ease'
             }}
           >
-            <span style={{ fontSize: '0.92rem' }}>3. Good</span>
-            <span style={{ fontSize: '0.72rem', opacity: 0.8 }}>4 days</span>
+            <span style={{ fontSize: '0.98rem' }}>3. Good</span>
+            <span style={{ fontSize: '0.76rem', opacity: 0.8 }}>4 days</span>
           </button>
 
           <button 
             onClick={() => handleRating(4)} 
             style={{
-              padding: '14px 10px',
-              borderRadius: '14px',
+              padding: '16px 12px',
+              borderRadius: '16px',
               border: '1px solid rgba(16, 185, 129, 0.4)',
               background: 'rgba(16, 185, 129, 0.15)',
               color: '#10b981',
@@ -298,16 +298,16 @@ export function FlashcardViewer({ deck, onUpdateDeck, onBack }) {
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
-              gap: '4px',
+              gap: '6px',
               transition: 'all 0.2s ease'
             }}
           >
-            <span style={{ fontSize: '0.92rem' }}>4. Easy</span>
-            <span style={{ fontSize: '0.72rem', opacity: 0.8 }}>6+ days</span>
+            <span style={{ fontSize: '0.98rem' }}>4. Easy</span>
+            <span style={{ fontSize: '0.76rem', opacity: 0.8 }}>6+ days</span>
           </button>
         </div>
       ) : (
-        <div style={{ textAlign: 'center', padding: '14px', color: 'var(--text-muted)', fontSize: '0.88rem' }}>
+        <div style={{ textAlign: 'center', padding: '16px', color: 'var(--text-muted)', fontSize: '0.92rem' }}>
           💡 Click card or press <strong>Spacebar</strong> to reveal answer
         </div>
       )}

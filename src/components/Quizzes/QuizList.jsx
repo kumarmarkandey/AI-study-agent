@@ -11,18 +11,18 @@ export function QuizList({ quizzes, results, onSelectQuiz, onCreateQuiz, apiKey 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
       {/* Header Bar */}
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '16px' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '20px' }}>
         <div>
-          <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'white' }}>Practice Exams & Diagnostics</h3>
-          <p style={{ fontSize: '0.86rem', color: 'var(--text-secondary)' }}>
+          <h3 style={{ fontSize: '1.35rem', fontWeight: 800, color: 'white' }}>Practice Exams & Diagnostics</h3>
+          <p style={{ fontSize: '0.92rem', color: 'var(--text-secondary)' }}>
             Test your conceptual knowledge under timed conditions with instant step-by-step explanations.
           </p>
         </div>
 
         <button onClick={() => setIsModalOpen(true)} className="btn-emerald">
-          <Sparkles size={16} />
+          <Sparkles size={18} />
           <span>Generate Quiz with AI</span>
         </button>
       </div>
@@ -30,35 +30,35 @@ export function QuizList({ quizzes, results, onSelectQuiz, onCreateQuiz, apiKey 
       {/* Available Quizzes Grid */}
       <div style={{
         display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
-        gap: '22px'
+        gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))',
+        gap: '28px'
       }}>
         {quizzes.map(quiz => (
           <div 
             key={quiz.id} 
             className="glass-panel glass-card-interactive"
             onClick={() => onSelectQuiz(quiz)}
-            style={{ padding: '26px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: '210px' }}
+            style={{ padding: '30px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: '230px' }}
           >
             <div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '18px' }}>
                 <span className="badge badge-emerald">{quiz.subject}</span>
-                <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: '5px' }}>
-                  <Clock size={14} /> {quiz.timeLimitMinutes} mins
+                <span style={{ fontSize: '0.84rem', color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <Clock size={16} /> {quiz.timeLimitMinutes} mins
                 </span>
               </div>
 
-              <h3 style={{ fontSize: '1.2rem', fontWeight: 700, marginBottom: '8px', color: 'white' }}>
+              <h3 style={{ fontSize: '1.25rem', fontWeight: 700, marginBottom: '10px', color: 'white' }}>
                 {quiz.title}
               </h3>
-              <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
+              <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
                 {quiz.questions.length} Diagnostic Multiple-Choice Questions
               </p>
             </div>
 
-            <div style={{ marginTop: '22px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <button className="btn-primary" style={{ padding: '8px 16px', fontSize: '0.86rem' }}>
-                <Play size={14} />
+            <div style={{ marginTop: '26px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <button className="btn-primary" style={{ padding: '10px 18px', fontSize: '0.88rem' }}>
+                <Play size={15} />
                 <span>Start Quiz</span>
               </button>
             </div>
@@ -68,38 +68,38 @@ export function QuizList({ quizzes, results, onSelectQuiz, onCreateQuiz, apiKey 
 
       {/* Past Quiz Diagnostic History */}
       {results.length > 0 && (
-        <div className="glass-panel" style={{ padding: '26px', marginTop: '12px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '18px' }}>
-            <History size={20} color="var(--accent-cyan)" />
-            <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: 'white' }}>Recent Quiz Diagnostic Results</h3>
+        <div className="glass-panel" style={{ padding: '30px', marginTop: '16px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '22px' }}>
+            <History size={22} color="var(--accent-cyan)" />
+            <h3 style={{ fontSize: '1.15rem', fontWeight: 700, color: 'white' }}>Recent Quiz Diagnostic Results</h3>
           </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
             {results.map(res => (
               <div 
                 key={res.id} 
                 style={{
-                  padding: '18px',
-                  borderRadius: '14px',
+                  padding: '20px',
+                  borderRadius: '16px',
                   background: 'rgba(255, 255, 255, 0.03)',
                   border: '1px solid var(--border-color)',
                   display: 'flex',
                   alignItems: 'center',
                   justify: 'space-between',
                   flexWrap: 'wrap',
-                  gap: '14px'
+                  gap: '16px'
                 }}
               >
                 <div>
-                  <h4 style={{ fontSize: '1rem', fontWeight: 700, marginBottom: '4px', color: 'white' }}>{res.quizTitle}</h4>
-                  <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
+                  <h4 style={{ fontSize: '1.05rem', fontWeight: 700, marginBottom: '6px', color: 'white' }}>{res.quizTitle}</h4>
+                  <span style={{ fontSize: '0.84rem', color: 'var(--text-muted)' }}>
                     Completed {new Date(res.completedAt).toLocaleDateString()} • {res.correctAnswers}/{res.totalQuestions} Correct
                   </span>
                 </div>
 
-                <div style={{ display: 'flex', alignItems: 'center', gap: '18px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
                   <div style={{
-                    fontSize: '1.4rem',
+                    fontSize: '1.5rem',
                     fontWeight: 800,
                     fontFamily: 'var(--font-heading)',
                     color: res.score >= 80 ? '#10b981' : '#f59e0b'

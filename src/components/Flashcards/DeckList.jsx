@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { 
-  Plus, 
   Sparkles, 
   Brain, 
   Atom, 
@@ -27,23 +26,23 @@ export function DeckList({ decks, onSelectDeck, onCreateDeck, onDeleteDeck, apiK
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
       {/* Header & Filter Controls Bar */}
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '16px' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '20px' }}>
         {/* Subject Filter Pills */}
-        <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
           {subjects.map(subj => (
             <button
               key={subj}
               onClick={() => setSelectedSubject(subj)}
               style={{
-                padding: '8px 18px',
-                borderRadius: '20px',
+                padding: '10px 22px',
+                borderRadius: '24px',
                 border: selectedSubject === subj ? '1px solid var(--accent-cyan)' : '1px solid var(--border-color)',
                 background: selectedSubject === subj ? 'rgba(56, 189, 248, 0.16)' : 'rgba(255, 255, 255, 0.03)',
                 color: selectedSubject === subj ? 'var(--accent-cyan)' : 'var(--text-secondary)',
                 fontWeight: 600,
-                fontSize: '0.86rem',
+                fontSize: '0.9rem',
                 cursor: 'pointer',
                 transition: 'all 0.2s ease'
               }}
@@ -54,19 +53,19 @@ export function DeckList({ decks, onSelectDeck, onCreateDeck, onDeleteDeck, apiK
         </div>
 
         {/* Create / Generate Action */}
-        <div style={{ display: 'flex', gap: '12px' }}>
+        <div style={{ display: 'flex', gap: '14px' }}>
           <button onClick={() => setIsAiModalOpen(true)} className="btn-violet">
-            <Sparkles size={16} />
+            <Sparkles size={18} />
             <span>Generate Deck with AI</span>
           </button>
         </div>
       </div>
 
-      {/* Grid of Decks */}
+      {/* Grid of Decks - Spacious Multi-Column */}
       <div style={{
         display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
-        gap: '22px'
+        gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
+        gap: '28px'
       }}>
         {filteredDecks.map(deck => {
           const SubjectIcon = getSubjectIcon(deck.subject);
@@ -82,20 +81,20 @@ export function DeckList({ decks, onSelectDeck, onCreateDeck, onDeleteDeck, apiK
               className="glass-panel glass-card-interactive"
               onClick={() => onSelectDeck(deck)}
               style={{
-                padding: '26px',
+                padding: '30px',
                 display: 'flex',
                 flexDirection: 'column',
                 justify: 'space-between',
-                minHeight: '230px',
+                minHeight: '260px',
                 position: 'relative'
               }}
             >
               <div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
                   <div style={{
-                    width: '42px',
-                    height: '42px',
-                    borderRadius: '12px',
+                    width: '46px',
+                    height: '46px',
+                    borderRadius: '14px',
                     background: `${deck.color || '#38bdf8'}20`,
                     border: `1px solid ${deck.color || '#38bdf8'}40`,
                     display: 'flex',
@@ -103,43 +102,43 @@ export function DeckList({ decks, onSelectDeck, onCreateDeck, onDeleteDeck, apiK
                     justify: 'center',
                     color: deck.color || '#38bdf8'
                   }}>
-                    <SubjectIcon size={22} />
+                    <SubjectIcon size={24} />
                   </div>
 
-                  <span className="badge badge-cyan" style={{ fontSize: '0.7rem' }}>
+                  <span className="badge badge-cyan" style={{ fontSize: '0.74rem' }}>
                     {deck.subject}
                   </span>
                 </div>
 
-                <h3 style={{ fontSize: '1.2rem', fontWeight: 700, marginBottom: '8px', color: 'white' }}>
+                <h3 style={{ fontSize: '1.25rem', fontWeight: 700, marginBottom: '10px', color: 'white' }}>
                   {deck.title}
                 </h3>
-                <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.5, marginBottom: '18px' }}>
+                <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: '22px' }}>
                   {deck.description}
                 </p>
               </div>
 
               <div>
                 {/* Mastery Progress Bar */}
-                <div style={{ marginBottom: '18px' }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.78rem', color: 'var(--text-muted)', marginBottom: '6px' }}>
+                <div style={{ marginBottom: '22px' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.82rem', color: 'var(--text-muted)', marginBottom: '8px' }}>
                     <span>{masteredCards}/{totalCards} Mastered ({masteryPercent}%)</span>
                     {dueCards > 0 && <span style={{ color: '#f59e0b', fontWeight: 700 }}>{dueCards} Due</span>}
                   </div>
-                  <div style={{ height: '6px', width: '100%', background: 'rgba(255, 255, 255, 0.08)', borderRadius: '4px', overflow: 'hidden' }}>
+                  <div style={{ height: '8px', width: '100%', background: 'rgba(255, 255, 255, 0.08)', borderRadius: '4px', overflow: 'hidden' }}>
                     <div style={{ width: `${masteryPercent}%`, height: '100%', background: deck.color || '#38bdf8', borderRadius: '4px' }} />
                   </div>
                 </div>
 
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <button className="btn-primary" style={{ padding: '8px 16px', fontSize: '0.86rem' }}>
-                    <Play size={14} />
+                  <button className="btn-primary" style={{ padding: '10px 18px', fontSize: '0.88rem' }}>
+                    <Play size={15} />
                     <span>Start Review</span>
                   </button>
 
                   <button 
                     onClick={(e) => { e.stopPropagation(); onDeleteDeck(deck.id); }}
-                    style={{ background: 'transparent', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', padding: '6px', borderRadius: '6px', transition: 'color 0.2s ease' }}
+                    style={{ background: 'transparent', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', padding: '8px', borderRadius: '8px', transition: 'color 0.2s ease' }}
                     title="Delete Deck"
                   >
                     <Trash2 size={18} />

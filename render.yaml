@@ -1,0 +1,45 @@
+# Render spec template for AI-Study-Companion
+services:
+  - type: web
+    name: study-sphere-backend
+    runtime: node
+    plan: free
+    repo: https://github.com/kumarmarkandey/AI-study-agent
+    branch: main
+    rootDir: backend
+    buildCommand: npm ci --prefer-offline --no-audit --no-fund --silent || npm install --prefer-offline --no-audit --no-fund --silent
+    startCommand: npm start
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 5000
+      - key: DB_HOST
+        sync: false
+      - key: DB_USER
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+      - key: DB_NAME
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+
+  - type: web
+    name: study-sphere-frontend
+    runtime: static
+    plan: free
+    repo: https://github.com/kumarmarkandey/AI-study-agent
+    branch: main
+    rootDir: frontend
+    buildCommand: (npm ci --prefer-offline --no-audit --no-fund --silent || npm install --prefer-offline --no-audit --no-fund --silent) && npm run build
+    staticPublishPath: dist
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: VITE_API_BASE_URL
+        sync: false
+
+

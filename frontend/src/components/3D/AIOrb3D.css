@@ -1,0 +1,18 @@
+.ai-orb-container {
+  width: 140px;
+  height: 140px;
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  position: relative;
+}
+
+@media (max-width: 480px) {
+  .ai-orb-container {
+    width: 120px;
+    height: 120px;
+  }
+}
+

@@ -43,7 +43,11 @@ db.query("SELECT 1", (err) => {
   console.log("MySQL database connected successfully!");
 });
 
-// Start server
-app.listen(PORT, () => {
-  console.log(`StudySphere AI server running on http://localhost:${PORT}`);
-});
+// Start server locally (skip port binding in Vercel serverless environment)
+if (!process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`StudySphere AI server running on http://localhost:${PORT}`);
+  });
+}
+
+module.exports = app;

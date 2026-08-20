@@ -12,10 +12,10 @@
   
   --primary: #6366f1;
   --primary-hover: #4f46e5;
-  --primary-glow: rgba(99, 102, 241, 0.35);
+  --primary-glow: rgba(99, 102, 241, 0.25);
   
   --secondary: #8b5cf6;
-  --secondary-glow: rgba(139, 92, 246, 0.35);
+  --secondary-glow: rgba(139, 92, 246, 0.25);
   
   --accent-cyan: #06b6d4;
   --accent-green: #10b981;
@@ -31,9 +31,9 @@
   --radius-lg: 20px;
   --radius-full: 9999px;
   
-  --shadow-3d: 0 20px 40px -15px rgba(0, 0, 0, 0.7), 0 0 30px rgba(99, 102, 241, 0.12);
+  --shadow-3d: 0 12px 30px -10px rgba(0, 0, 0, 0.6), 0 0 20px rgba(99, 102, 241, 0.08);
   --shadow-modal: 0 25px 60px -15px rgba(0, 0, 0, 0.85), 0 0 40px rgba(99, 102, 241, 0.2);
-  --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 * {
@@ -93,7 +93,7 @@ h1, h2, h3, h4, h5, h6 {
   background: var(--primary);
 }
 
-/* Global Glassmorphism & 3D Utility Classes */
+/* Global Glassmorphism & Card Utility Classes */
 .glass-panel {
   background: var(--bg-card);
   backdrop-filter: blur(18px);
@@ -110,29 +110,27 @@ h1, h2, h3, h4, h5, h6 {
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-md);
   transition: var(--transition);
-  transform-style: preserve-3d;
-  perspective: 1000px;
 }
 
 @media (hover: hover) and (pointer: fine) {
   .glass-card-3d:hover {
-    transform: translateY(-4px) rotateX(2deg);
-    border-color: var(--glass-border-glow);
-    box-shadow: 0 20px 40px -10px rgba(99, 102, 241, 0.22);
+    transform: translateY(-3px);
+    border-color: rgba(99, 102, 241, 0.35);
+    box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.5), 0 0 20px rgba(99, 102, 241, 0.15);
   }
 }
 
 .btn-3d-primary {
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  background: linear-gradient(135deg, var(--primary), var(--primary-hover));
   color: #ffffff;
-  border: none;
-  padding: 12px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 11px 22px;
   min-height: 44px;
   border-radius: var(--radius-full);
   font-weight: 600;
   font-size: 0.92rem;
   cursor: pointer;
-  box-shadow: 0 8px 20px -4px var(--primary-glow);
+  box-shadow: 0 6px 16px -4px var(--primary-glow);
   transition: var(--transition);
   display: inline-flex;
   align-items: center;
@@ -147,14 +145,13 @@ h1, h2, h3, h4, h5, h6 {
 @media (hover: hover) and (pointer: fine) {
   .btn-3d-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 12px 25px -4px var(--secondary-glow);
-    filter: brightness(1.08);
+    box-shadow: 0 10px 22px -4px rgba(99, 102, 241, 0.35);
+    background: linear-gradient(135deg, #6366f1, #4338ca);
   }
 }
 
 .btn-3d-primary:active {
-  transform: scale(0.97);
-  box-shadow: 0 4px 12px -2px var(--primary-glow);
+  transform: scale(0.98);
 }
 
 .btn-3d-primary:disabled {
@@ -167,7 +164,7 @@ h1, h2, h3, h4, h5, h6 {
   background: rgba(255, 255, 255, 0.05);
   color: var(--text-main);
   border: 1px solid var(--glass-border);
-  padding: 12px 24px;
+  padding: 11px 22px;
   min-height: 44px;
   border-radius: var(--radius-full);
   font-weight: 600;
@@ -187,16 +184,15 @@ h1, h2, h3, h4, h5, h6 {
 
 @media (hover: hover) and (pointer: fine) {
   .btn-3d-secondary:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: var(--glass-border-glow);
+    background: rgba(255, 255, 255, 0.09);
+    border-color: rgba(255, 255, 255, 0.16);
     transform: translateY(-2px);
     color: #ffffff;
   }
 }
 
 .btn-3d-secondary:active {
-  transform: scale(0.97);
-  background: rgba(255, 255, 255, 0.14);
+  transform: scale(0.98);
 }
 
 .btn-3d-secondary:disabled {
@@ -206,9 +202,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-3d-danger {
-  background: rgba(244, 63, 94, 0.15);
+  background: rgba(244, 63, 94, 0.12);
   color: #fca5a5;
-  border: 1px solid rgba(244, 63, 94, 0.35);
+  border: 1px solid rgba(244, 63, 94, 0.3);
   padding: 10px 20px;
   border-radius: var(--radius-full);
   font-weight: 600;
@@ -222,13 +218,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-3d-danger:hover {
-  background: rgba(244, 63, 94, 0.25);
+  background: rgba(244, 63, 94, 0.22);
   border-color: #f43f5e;
   color: #ffffff;
 }
 
 .gradient-text {
-  background: linear-gradient(135deg, #818cf8 0%, #c084fc 50%, #38bdf8 100%);
+  background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }

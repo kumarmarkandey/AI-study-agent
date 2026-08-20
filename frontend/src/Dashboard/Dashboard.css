@@ -60,12 +60,11 @@
   font-weight: 800;
   color: #ffffff;
   text-decoration: none;
+}
 
-  .logo-ai {
-    background: linear-gradient(135deg, #818cf8, #c084fc);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
+.brand-logo .logo-ai {
+  color: var(--primary);
+  margin-left: 4px;
 }
 
 .welcome-tag {

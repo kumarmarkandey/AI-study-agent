@@ -4,38 +4,38 @@ function HowItWorks() {
   const steps = [
     {
       number: "01",
-      title: "Create Your 3D Subject Hub",
+      title: "Create Subject Workspaces",
       description:
-        "Sign up, log in, and organize your subjects into dedicated study nodes.",
+        "Organize your courses and study units into dedicated workspace hubs.",
     },
     {
       number: "02",
-      title: "Add Notes & Study Materials",
+      title: "Upload Notes & Resources",
       description:
-        "Input your notes and reference links to store them securely in your live MySQL database.",
+        "Add key notes and reference materials with instant cloud database sync.",
     },
     {
       number: "03",
-      title: "Unleash AI & Interactive Tools",
+      title: "Activate AI Assistant & Flashcards",
       description:
-        "Generate automated AI quizzes, flip 3D flashcards, and chat with your AI assistant.",
+        "Generate automated AI quizzes, practice 3D flashcards, and chat with AI in real time.",
     },
   ];
 
   return (
     <section className="how-it-works" id="how-it-works">
       <div className="how-heading">
-        <span className="section-tag">SIMPLE 3-STEP PROCESS</span>
-        <h2>From Raw Notes to Mastered Knowledge</h2>
+        <span className="section-tag">STREAMLINED WORKFLOW</span>
+        <h2>From Course Material to Active Mastery</h2>
         <p>
-          Elevate your study routine into an engaging 3D visual workspace in minutes.
+          Transform your traditional study routine into an interactive intelligent workspace in 3 steps.
         </p>
       </div>
 
       <div className="steps-container">
         {steps.map((step) => (
           <div className="step-card glass-card-3d" key={step.number}>
-            <div className="step-number gradient-text">{step.number}</div>
+            <div className="step-number">{step.number}</div>
             <h3>{step.title}</h3>
             <p>{step.description}</p>
           </div>

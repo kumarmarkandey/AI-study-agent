@@ -36,20 +36,22 @@
 }
 
 .step-number {
-  font-size: 3rem;
-  font-weight: 900;
+  font-size: 2.2rem;
+  font-weight: 800;
   margin-bottom: 16px;
   line-height: 1;
+  color: var(--primary);
 }
 
 .step-card h3 {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: 700;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
+  color: #ffffff;
 }
 
 .step-card p {
   color: var(--text-muted);
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   line-height: 1.6;
 }

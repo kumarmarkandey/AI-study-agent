@@ -4,42 +4,42 @@ import "./Features.css";
 function Features() {
   const features = [
     {
-      icon: <BookOpen size={28} className="feat-icon-indigo" />,
-      title: "3D Subject Workspace",
+      icon: <BookOpen size={24} className="feat-icon-indigo" />,
+      title: "Subject Workspace Hubs",
       description:
-        "Organize your learning into interactive 3D subject hubs with live database synchronization.",
-      badge: "Real-time DB",
+        "Organize your learning into dedicated subject workspaces with live cloud database synchronization.",
+      badge: "Real-time Sync",
     },
     {
-      icon: <Bot size={28} className="feat-icon-purple" />,
+      icon: <Bot size={24} className="feat-icon-purple" />,
       title: "Context-Aware AI Chat",
       description:
-        "Chat with a holographic 3D AI companion that analyzes your subject notes & study materials.",
-      badge: "AI Hologram",
+        "Chat with an AI companion that reads and synthesizes your subject notes & study materials.",
+      badge: "AI Powered",
     },
     {
-      icon: <Brain size={28} className="feat-icon-cyan" />,
+      icon: <Brain size={24} className="feat-icon-cyan" />,
       title: "Smart AI Quiz Generator",
       description:
-        "Instantly turn your subject content into multiple-choice quizzes with detailed explanations.",
-      badge: "Interactive MCQs",
+        "Instantly convert subject notes into multiple-choice quizzes with instant grading & review.",
+      badge: "Smart MCQs",
     },
     {
-      icon: <Layers size={28} className="feat-icon-rose" />,
-      title: "3D Flip Flashcards",
+      icon: <Layers size={24} className="feat-icon-rose" />,
+      title: "Interactive 3D Flashcards",
       description:
-        "Master key concepts using interactive 3D flipping flashcards with active recall mastery tracking.",
-      badge: "3D Flip FX",
+        "Master key definitions using interactive 3D flipping flashcards with spaced review tracking.",
+      badge: "Active Recall",
     },
   ];
 
   return (
     <section id="features" className="features">
       <div className="features-heading">
-        <span className="section-tag">POWERFUL 3D STUDY ENGINE</span>
-        <h2>Everything You Need to Ace Your Studies</h2>
+        <span className="section-tag">INTELLIGENT STUDY PLATFORM</span>
+        <h2>Everything You Need to Master Your Courses</h2>
         <p>
-          Combine cutting-edge WebGL 3D graphics, intelligent AI models, and real-time database storage.
+          Seamlessly integrate AI study tools, active recall workflows, and secure cloud storage.
         </p>
       </div>
 

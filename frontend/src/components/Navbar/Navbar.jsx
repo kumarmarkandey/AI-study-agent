@@ -11,12 +11,10 @@ function Navbar() {
     <header className="navbar-container">
       <nav className="navbar glass-panel">
         <Link to="/" className="navbar-logo">
-          <Box className="logo-box-icon" size={22} />
+          <Box className="logo-box-icon" size={20} />
           <span>StudySphere</span>
           <span className="logo-ai">AI</span>
-          <span className="badge-3d-tag">
-            <Sparkles size={11} /> 3D
-          </span>
+          <span className="badge-3d-tag">PRO</span>
         </Link>
 
         <div className="navbar-links">

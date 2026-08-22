@@ -1,28 +1,28 @@
 .faq-section-netflix {
   background-color: #000000;
-  padding: 70px 6%;
+  padding: 100px 6%;
   position: relative;
   z-index: 1;
 }
 
 .faq-container {
-  max-width: 1000px;
+  max-width: 1040px;
   margin: 0 auto;
 }
 
 .faq-main-heading {
-  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
   font-weight: 900;
   text-align: center;
   color: #ffffff;
-  margin-bottom: 40px;
+  margin-bottom: 50px;
   letter-spacing: -0.03em;
 }
 
 .faq-accordion-list {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 14px;
 }
 
 .faq-item {
@@ -31,11 +31,11 @@
 
 .faq-question-btn {
   width: 100%;
-  padding: 22px 28px;
+  padding: 26px 32px;
   background: #2d2d2d;
   border: none;
   color: #ffffff;
-  font-size: clamp(1.1rem, 1.6vw, 1.45rem);
+  font-size: clamp(1.15rem, 1.8vw, 1.5rem);
   font-weight: 600;
   text-align: left;
   display: flex;
@@ -52,20 +52,21 @@
 .faq-icon {
   color: #ffffff;
   flex-shrink: 0;
+  margin-left: 16px;
 }
 
 .faq-answer-panel {
-  padding: 24px 28px;
+  padding: 28px 32px;
   background: #2d2d2d;
-  margin-top: 2px;
+  margin-top: 3px;
   border-top: 1px solid rgba(0, 0, 0, 0.4);
   animation: faqExpand 0.2s ease-out;
 }
 
 .faq-answer-panel p {
-  font-size: clamp(1rem, 1.3vw, 1.2rem);
+  font-size: clamp(1.05rem, 1.4vw, 1.25rem);
   color: #e5e5e5;
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 @keyframes faqExpand {
@@ -74,10 +75,13 @@
 }
 
 @media (max-width: 600px) {
+  .faq-section-netflix {
+    padding: 70px 6%;
+  }
   .faq-question-btn {
-    padding: 16px 20px;
+    padding: 20px 22px;
   }
   .faq-answer-panel {
-    padding: 18px 20px;
+    padding: 22px 22px;
   }
 }

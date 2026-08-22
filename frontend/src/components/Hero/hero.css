@@ -1,7 +1,7 @@
 .hero-netflix {
   position: relative;
-  min-height: 90vh;
-  padding: 130px 6% 60px 6%;
+  min-height: 95vh;
+  padding: 160px 6% 90px 6%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -22,7 +22,7 @@
 .hero-container {
   position: relative;
   z-index: 2;
-  max-width: 1100px;
+  max-width: 1120px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -33,16 +33,16 @@
 .netflix-tag {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 6px 14px;
+  gap: 10px;
+  padding: 8px 18px;
   background: rgba(229, 9, 20, 0.15);
   border: 1px solid rgba(229, 9, 20, 0.4);
-  border-radius: 4px;
-  font-size: 0.78rem;
+  border-radius: 6px;
+  font-size: 0.82rem;
   font-weight: 800;
   color: #ff4d4d;
-  margin-bottom: 20px;
-  letter-spacing: 0.08em;
+  margin-bottom: 28px;
+  letter-spacing: 0.1em;
 }
 
 .tag-icon {
@@ -50,75 +50,76 @@
 }
 
 .netflix-hero-title {
-  font-size: clamp(2.4rem, 4.5vw + 0.8rem, 3.8rem);
+  font-size: clamp(2.6rem, 4.8vw + 0.8rem, 4.2rem);
   font-weight: 900;
-  line-height: 1.1;
+  line-height: 1.15;
   color: #ffffff;
-  margin-bottom: 16px;
-  max-width: 900px;
+  margin-bottom: 24px;
+  max-width: 950px;
   letter-spacing: -0.04em;
 }
 
 .netflix-hero-subtitle {
-  font-size: clamp(1.05rem, 1.4vw + 0.4rem, 1.35rem);
+  font-size: clamp(1.1rem, 1.5vw + 0.4rem, 1.45rem);
   color: var(--text-sub);
-  margin-bottom: 28px;
-  max-width: 720px;
-  line-height: 1.45;
+  margin-bottom: 36px;
+  max-width: 760px;
+  line-height: 1.55;
   font-weight: 500;
 }
 
 .netflix-cta-form {
   width: 100%;
-  max-width: 680px;
-  margin-bottom: 24px;
+  max-width: 720px;
+  margin-bottom: 32px;
 }
 
 .cta-prompt-text {
-  font-size: 1rem;
+  font-size: 1.05rem;
   color: #e5e5e5;
-  margin-bottom: 14px;
+  margin-bottom: 18px;
   font-weight: 500;
+  line-height: 1.4;
 }
 
 .input-group-netflix {
   display: flex;
-  gap: 8px;
+  gap: 12px;
   width: 100%;
 }
 
 .netflix-email-input {
   flex: 1;
   background: rgba(22, 22, 28, 0.85) !important;
-  border: 1px solid rgba(255, 255, 255, 0.25) !important;
-  border-radius: 4px !important;
-  padding: 16px 20px !important;
-  font-size: 1.05rem !important;
+  border: 1px solid rgba(255, 255, 255, 0.28) !important;
+  border-radius: 6px !important;
+  padding: 18px 24px !important;
+  font-size: 1.1rem !important;
   color: #ffffff !important;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(12px);
 }
 
 .netflix-email-input:focus {
   border-color: #ffffff !important;
-  box-shadow: 0 0 12px rgba(255, 255, 255, 0.3) !important;
+  box-shadow: 0 0 16px rgba(255, 255, 255, 0.35) !important;
 }
 
 .btn-get-started {
-  padding: 16px 28px !important;
-  font-size: 1.2rem !important;
+  padding: 18px 32px !important;
+  font-size: 1.25rem !important;
   font-weight: 800 !important;
-  border-radius: 4px !important;
+  border-radius: 6px !important;
   white-space: nowrap;
 }
 
 .hero-trust-badges {
   display: flex;
   align-items: center;
-  gap: 12px;
-  font-size: 0.85rem;
+  gap: 16px;
+  font-size: 0.9rem;
   color: var(--text-muted);
   font-weight: 600;
-  margin-bottom: 36px;
+  margin-bottom: 48px;
   flex-wrap: wrap;
   justify-content: center;
 }
@@ -126,41 +127,42 @@
 .hero-trust-badges span {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
 }
 
 .badge-divider {
-  color: rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.25);
 }
 
 .hero-preview-frame {
   width: 100%;
-  max-width: 580px;
+  max-width: 640px;
   background: rgba(18, 18, 24, 0.85);
-  border: 1px solid rgba(229, 9, 20, 0.3);
-  border-radius: 12px;
+  border: 1px solid rgba(229, 9, 20, 0.35);
+  border-radius: 14px;
   box-shadow: var(--shadow-modal);
   overflow: hidden;
   position: relative;
+  margin-top: 10px;
 }
 
 .preview-top-bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 16px;
-  background: rgba(10, 10, 14, 0.9);
+  padding: 12px 20px;
+  background: rgba(10, 10, 14, 0.95);
   border-bottom: 1px solid var(--glass-border);
 }
 
 .window-controls {
   display: flex;
-  gap: 6px;
+  gap: 8px;
 }
 
 .control-dot {
-  width: 8px;
-  height: 8px;
+  width: 9px;
+  height: 9px;
   border-radius: 50%;
 }
 
@@ -169,13 +171,13 @@
 .control-dot.green { background: #10b981; }
 
 .window-title {
-  font-size: 0.78rem;
+  font-size: 0.82rem;
   color: var(--text-muted);
   font-family: monospace;
 }
 
 .orb-wrapper-hero {
-  padding: 20px 0;
+  padding: 30px 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -192,11 +194,12 @@
 
 @media (max-width: 768px) {
   .hero-netflix {
-    padding-top: 100px;
-    padding-bottom: 40px;
+    padding-top: 130px;
+    padding-bottom: 60px;
   }
   .input-group-netflix {
     flex-direction: column;
+    gap: 10px;
   }
   .btn-get-started {
     width: 100%;

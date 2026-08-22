@@ -25,62 +25,68 @@ export function NoteEditor({ note, onSaveNote, onDeleteNote, onBack, apiKey, onC
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', minHeight: 'calc(100vh - 120px)' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', minHeight: 'calc(100vh - 120px)', textAlign: 'left' }}>
       {/* Top Action Bar */}
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px' }}>
-        <button onClick={onBack} className="btn-secondary">
+        <button onClick={onBack} className="btn-secondary" style={{ gap: '8px' }}>
           <ArrowLeft size={16} />
-          <span>Back to Notes</span>
+          <span>BACK TO NOTES</span>
         </button>
 
         {/* Mode Toggles */}
-        <div style={{ display: 'flex', gap: '4px', background: 'rgba(255, 255, 255, 0.05)', padding: '4px', borderRadius: '12px' }}>
+        <div style={{ display: 'flex', gap: '4px', background: '#0a0a0f', padding: '4px', borderRadius: '9999px', border: '1px solid rgba(255, 255, 255, 0.12)' }}>
           <button 
             onClick={() => setActiveMode('edit')}
             style={{
-              padding: '6px 14px',
-              borderRadius: '8px',
+              padding: '6px 16px',
+              borderRadius: '9999px',
               border: 'none',
-              background: activeMode === 'edit' ? 'rgba(56, 189, 248, 0.2)' : 'transparent',
-              color: activeMode === 'edit' ? 'var(--accent-cyan)' : 'var(--text-muted)',
-              fontSize: '0.84rem',
-              fontWeight: 600,
+              background: activeMode === 'edit' ? '#ffffff' : 'transparent',
+              color: activeMode === 'edit' ? '#000000' : 'var(--text-muted)',
+              fontSize: '0.75rem',
+              fontWeight: 800,
+              fontFamily: 'var(--font-display)',
+              textTransform: 'uppercase',
               cursor: 'pointer'
             }}
           >
-            Edit Only
+            EDIT ONLY
           </button>
 
           <button 
             onClick={() => setActiveMode('split')}
             style={{
-              padding: '6px 14px',
-              borderRadius: '8px',
+              padding: '6px 16px',
+              borderRadius: '9999px',
               border: 'none',
-              background: activeMode === 'split' ? 'rgba(56, 189, 248, 0.2)' : 'transparent',
-              color: activeMode === 'split' ? 'var(--accent-cyan)' : 'var(--text-muted)',
-              fontSize: '0.84rem',
-              fontWeight: 600,
+              background: activeMode === 'split' ? '#ffffff' : 'transparent',
+              color: activeMode === 'split' ? '#000000' : 'var(--text-muted)',
+              fontSize: '0.75rem',
+              fontWeight: 800,
+              fontFamily: 'var(--font-display)',
+              textTransform: 'uppercase',
               cursor: 'pointer'
             }}
           >
-            Split View
+            SPLIT VIEW
           </button>
 
           <button 
             onClick={() => setActiveMode('preview')}
             style={{
-              padding: '6px 14px',
-              borderRadius: '8px',
+              padding: '6px 16px',
+              borderRadius: '9999px',
               border: 'none',
-              background: activeMode === 'preview' ? 'rgba(56, 189, 248, 0.2)' : 'transparent',
-              color: activeMode === 'preview' ? 'var(--accent-cyan)' : 'var(--text-muted)',
-              fontSize: '0.84rem',
-              fontWeight: 600,
+              background: activeMode === 'preview' ? '#ffffff' : 'transparent',
+              color: activeMode === 'preview' ? '#000000' : 'var(--text-muted)',
+              fontSize: '0.75rem',
+              fontWeight: 800,
+              fontFamily: 'var(--font-display)',
+              textTransform: 'uppercase',
               cursor: 'pointer'
             }}
           >
-            Preview Only
+            PREVIEW ONLY
           </button>
         </div>
 
@@ -90,15 +96,15 @@ export function NoteEditor({ note, onSaveNote, onDeleteNote, onBack, apiKey, onC
               <Trash2 size={16} />
             </button>
           )}
-          <button onClick={handleSave} className="btn-primary">
+          <button onClick={handleSave} className="btn-liquid clunk-shimmer">
             <Save size={16} />
-            <span>Save Note</span>
+            <span>SAVE NOTE ↗</span>
           </button>
         </div>
       </div>
 
       {/* Note Title & Metadata Inputs */}
-      <div className="glass-panel" style={{ padding: '18px 22px', display: 'flex', flexDirection: 'column', gap: '14px' }}>
+      <div className="clunk-card" style={{ padding: '24px', display: 'flex', flexDirection: 'column', gap: '16px', background: '#0e0e14' }}>
         <input
           type="text"
           value={title}
@@ -108,11 +114,12 @@ export function NoteEditor({ note, onSaveNote, onDeleteNote, onBack, apiKey, onC
             background: 'transparent',
             border: 'none',
             outline: 'none',
-            fontSize: '1.4rem',
-            fontWeight: 800,
+            fontSize: '1.6rem',
+            fontWeight: 900,
+            textTransform: 'uppercase',
             color: 'white',
             width: '100%',
-            fontFamily: 'var(--font-heading)'
+            fontFamily: 'var(--font-display)'
           }}
         />
 
@@ -121,13 +128,15 @@ export function NoteEditor({ note, onSaveNote, onDeleteNote, onBack, apiKey, onC
             value={subject}
             onChange={(e) => setSubject(e.target.value)}
             style={{
-              padding: '6px 14px',
+              padding: '8px 16px',
               borderRadius: '8px',
-              background: 'rgba(5, 8, 16, 0.85)',
-              border: '1px solid var(--border-color)',
-              color: 'var(--accent-cyan)',
-              fontSize: '0.84rem',
-              fontWeight: 600,
+              background: '#050508',
+              border: '1px solid rgba(255, 255, 255, 0.15)',
+              color: 'var(--color-grape-light)',
+              fontSize: '0.82rem',
+              fontWeight: 800,
+              fontFamily: 'var(--font-display)',
+              textTransform: 'uppercase',
               outline: 'none'
             }}
           >
@@ -150,10 +159,10 @@ export function NoteEditor({ note, onSaveNote, onDeleteNote, onBack, apiKey, onC
                 background: 'transparent',
                 border: 'none',
                 outline: 'none',
-                fontSize: '0.84rem',
+                fontSize: '0.85rem',
                 color: 'var(--text-secondary)',
                 width: '100%',
-                fontFamily: 'var(--font-main)'
+                fontFamily: 'var(--font-mono)'
               }}
             />
           </div>
@@ -172,7 +181,7 @@ export function NoteEditor({ note, onSaveNote, onDeleteNote, onBack, apiKey, onC
       <div style={{
         display: 'grid',
         gridTemplateColumns: activeMode === 'split' ? '1fr 1fr' : '1fr',
-        gap: '18px',
+        gap: '20px',
         flex: 1,
         minHeight: '450px'
       }}>
@@ -186,12 +195,12 @@ export function NoteEditor({ note, onSaveNote, onDeleteNote, onBack, apiKey, onC
               width: '100%',
               height: '100%',
               minHeight: '400px',
-              padding: '22px',
-              borderRadius: '18px',
-              background: 'rgba(15, 23, 42, 0.92)',
-              border: '1px solid var(--border-color)',
+              padding: '24px',
+              borderRadius: '16px',
+              background: '#09090d',
+              border: '1px solid rgba(255, 255, 255, 0.15)',
               color: '#f8fafc',
-              fontSize: '0.95rem',
+              fontSize: '0.92rem',
               fontFamily: 'var(--font-mono)',
               lineHeight: 1.65,
               resize: 'none',
@@ -202,14 +211,15 @@ export function NoteEditor({ note, onSaveNote, onDeleteNote, onBack, apiKey, onC
 
         {/* Live Preview Pane */}
         {(activeMode === 'preview' || activeMode === 'split') && (
-          <div className="glass-panel" style={{
-            padding: '26px',
+          <div className="clunk-card" style={{
+            padding: '28px',
             overflowY: 'auto',
             height: '100%',
             minHeight: '400px',
             lineHeight: 1.7,
             color: '#e2e8f0',
-            fontSize: '0.95rem'
+            fontSize: '0.95rem',
+            background: '#0e0e14'
           }}>
             <div style={{ whiteSpace: 'pre-wrap' }}>
               {content || <span style={{ color: 'var(--text-muted)' }}>Preview will appear here...</span>}

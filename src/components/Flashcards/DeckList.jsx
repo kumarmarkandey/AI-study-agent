@@ -5,7 +5,9 @@ import {
   Atom, 
   Dna, 
   Play, 
-  Trash2
+  Trash2,
+  Layers,
+  ArrowUpRight
 } from 'lucide-react';
 import { AIDeckGeneratorModal } from './AIDeckGeneratorModal';
 
@@ -26,46 +28,56 @@ export function DeckList({ decks, onSelectDeck, onCreateDeck, onDeleteDeck, apiK
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
-      {/* Header & Filter Controls Bar */}
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '20px' }}>
-        {/* Subject Filter Pills */}
-        <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-          {subjects.map(subj => (
-            <button
-              key={subj}
-              onClick={() => setSelectedSubject(subj)}
-              style={{
-                padding: '10px 22px',
-                borderRadius: '24px',
-                border: selectedSubject === subj ? '1px solid var(--accent-cyan)' : '1px solid var(--border-color)',
-                background: selectedSubject === subj ? 'rgba(56, 189, 248, 0.16)' : 'rgba(255, 255, 255, 0.03)',
-                color: selectedSubject === subj ? 'var(--accent-cyan)' : 'var(--text-secondary)',
-                fontWeight: 600,
-                fontSize: '0.9rem',
-                cursor: 'pointer',
-                transition: 'all 0.2s ease'
-              }}
-            >
-              {subj}
-            </button>
-          ))}
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '36px', textAlign: 'left' }}>
+      {/* Title Banner */}
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '20px' }}>
+        <div>
+          <span style={{ fontSize: '0.75rem', fontFamily: 'var(--font-display)', textTransform: 'uppercase', letterSpacing: '0.18em', color: 'var(--text-muted)' }}>
+            SPACED REPETITION ENGINE
+          </span>
+          <h1 style={{ fontSize: 'clamp(2.2rem, 5vw, 3.8rem)', fontWeight: 900, textTransform: 'uppercase', color: '#ffffff', marginTop: '8px' }}>
+            AI FLASHCARD <span style={{ color: 'var(--color-grape-light)' }}>DECKS</span>
+          </h1>
         </div>
 
-        {/* Create / Generate Action */}
-        <div style={{ display: 'flex', gap: '14px' }}>
-          <button onClick={() => setIsAiModalOpen(true)} className="btn-violet">
-            <Sparkles size={18} />
-            <span>Generate Deck with AI</span>
-          </button>
-        </div>
+        <button onClick={() => setIsAiModalOpen(true)} className="btn-liquid clunk-shimmer">
+          <Sparkles size={16} />
+          <span>GENERATE DECK WITH AI ↗</span>
+          <span className="clunk-shimmer-sweep" />
+        </button>
       </div>
 
-      {/* Grid of Decks - Spacious Multi-Column */}
+      {/* Subject Filter Pills */}
+      <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+        {subjects.map(subj => (
+          <button
+            key={subj}
+            onClick={() => setSelectedSubject(subj)}
+            style={{
+              padding: '10px 22px',
+              borderRadius: '9999px',
+              border: selectedSubject === subj ? '1px solid #ffffff' : '1px solid rgba(255, 255, 255, 0.18)',
+              background: selectedSubject === subj ? '#ffffff' : 'transparent',
+              color: selectedSubject === subj ? '#000000' : 'rgba(255, 255, 255, 0.7)',
+              fontWeight: 800,
+              fontFamily: 'var(--font-display)',
+              fontSize: '0.78rem',
+              textTransform: 'uppercase',
+              letterSpacing: '0.1em',
+              cursor: 'pointer',
+              transition: 'all 0.2s ease'
+            }}
+          >
+            {subj}
+          </button>
+        ))}
+      </div>
+
+      {/* Grid of Decks */}
       <div style={{
         display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
-        gap: '28px'
+        gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))',
+        gap: '32px'
       }}>
         {filteredDecks.map(deck => {
           const SubjectIcon = getSubjectIcon(deck.subject);
@@ -78,67 +90,67 @@ export function DeckList({ decks, onSelectDeck, onCreateDeck, onDeleteDeck, apiK
           return (
             <div 
               key={deck.id} 
-              className="glass-panel glass-card-interactive"
+              className="clunk-card"
               onClick={() => onSelectDeck(deck)}
               style={{
-                padding: '30px',
+                padding: '32px',
                 display: 'flex',
                 flexDirection: 'column',
                 justify: 'space-between',
-                minHeight: '260px',
-                position: 'relative'
+                minHeight: '290px',
+                cursor: 'pointer'
               }}
             >
               <div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
                   <div style={{
-                    width: '46px',
-                    height: '46px',
-                    borderRadius: '14px',
-                    background: `${deck.color || '#38bdf8'}20`,
-                    border: `1px solid ${deck.color || '#38bdf8'}40`,
+                    width: '44px',
+                    height: '44px',
+                    borderRadius: '10px',
+                    background: 'rgba(147, 51, 234, 0.18)',
+                    border: '1px solid rgba(147, 51, 234, 0.4)',
                     display: 'flex',
                     alignItems: 'center',
                     justify: 'center',
-                    color: deck.color || '#38bdf8'
+                    color: 'var(--color-grape-light)'
                   }}>
-                    <SubjectIcon size={24} />
+                    <SubjectIcon size={22} />
                   </div>
 
-                  <span className="badge badge-cyan" style={{ fontSize: '0.74rem' }}>
+                  <span className="badge badge-grape">
                     {deck.subject}
                   </span>
                 </div>
 
-                <h3 style={{ fontSize: '1.25rem', fontWeight: 700, marginBottom: '10px', color: 'white' }}>
+                <h3 style={{ fontSize: '1.3rem', fontWeight: 900, textTransform: 'uppercase', marginBottom: '10px', color: 'white', fontFamily: 'var(--font-display)' }}>
                   {deck.title}
                 </h3>
-                <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: '22px' }}>
+                <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: '24px' }}>
                   {deck.description}
                 </p>
               </div>
 
               <div>
                 {/* Mastery Progress Bar */}
-                <div style={{ marginBottom: '22px' }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.82rem', color: 'var(--text-muted)', marginBottom: '8px' }}>
+                <div style={{ marginBottom: '24px' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.8rem', fontFamily: 'var(--font-mono)', color: 'var(--text-muted)', marginBottom: '8px' }}>
                     <span>{masteredCards}/{totalCards} Mastered ({masteryPercent}%)</span>
-                    {dueCards > 0 && <span style={{ color: '#f59e0b', fontWeight: 700 }}>{dueCards} Due</span>}
+                    {dueCards > 0 && <span style={{ color: 'var(--color-grape-light)', fontWeight: 700 }}>★ {dueCards} DUE TODAY</span>}
                   </div>
-                  <div style={{ height: '8px', width: '100%', background: 'rgba(255, 255, 255, 0.08)', borderRadius: '4px', overflow: 'hidden' }}>
-                    <div style={{ width: `${masteryPercent}%`, height: '100%', background: deck.color || '#38bdf8', borderRadius: '4px' }} />
+                  <div style={{ height: '6px', width: '100%', background: 'rgba(255, 255, 255, 0.1)', borderRadius: '3px', overflow: 'hidden' }}>
+                    <div style={{ width: `${masteryPercent}%`, height: '100%', background: 'var(--color-grape-light)', borderRadius: '3px' }} />
                   </div>
                 </div>
 
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <button className="btn-primary" style={{ padding: '10px 18px', fontSize: '0.88rem' }}>
-                    <Play size={15} />
-                    <span>Start Review</span>
+                  <button className="btn-secondary" style={{ padding: '10px 20px', fontSize: '0.78rem' }}>
+                    <Play size={14} />
+                    <span>START REVIEW ↗</span>
                   </button>
 
                   <button 
                     onClick={(e) => { e.stopPropagation(); onDeleteDeck(deck.id); }}
-                    style={{ background: 'transparent', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', padding: '8px', borderRadius: '8px', transition: 'color 0.2s ease' }}
+                    style={{ background: 'transparent', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', padding: '8px', borderRadius: '8px' }}
                     title="Delete Deck"
                   >
                     <Trash2 size={18} />

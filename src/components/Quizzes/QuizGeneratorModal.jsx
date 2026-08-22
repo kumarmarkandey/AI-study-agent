@@ -29,28 +29,30 @@ export function QuizGeneratorModal({ isOpen, onClose, onQuizCreated, apiKey }) {
 
   return (
     <div className="modal-overlay">
-      <div className="glass-panel" style={{ width: '100%', maxWidth: '540px', padding: '32px', position: 'relative' }}>
+      <div className="clunk-card" style={{ width: '100%', maxWidth: '540px', padding: '36px', position: 'relative', background: '#0a0a0f', border: '1px solid rgba(255, 255, 255, 0.18)' }}>
         <button
           onClick={onClose}
           disabled={loading}
           style={{ position: 'absolute', right: '20px', top: '20px', background: 'transparent', border: 'none', color: 'var(--text-muted)', cursor: 'pointer' }}
         >
-          <X size={20} />
+          <X size={22} />
         </button>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px' }}>
-          <div style={{ padding: '12px', borderRadius: '12px', background: 'linear-gradient(135deg, #059669 0%, #34d399 100%)', boxShadow: 'var(--shadow-glow-emerald)' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '24px' }}>
+          <div style={{ padding: '12px', borderRadius: '12px', background: 'linear-gradient(135deg, var(--color-grape) 0%, var(--color-grape-deep) 100%)', boxShadow: '0 0 20px var(--color-grape-glow)' }}>
             <HelpCircle size={24} color="white" />
           </div>
-          <div>
-            <h3 style={{ fontSize: '1.3rem', fontWeight: 800, color: 'white' }}>AI Quiz Generator</h3>
-            <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)' }}>Generate diagnostic multiple-choice exams on demand</p>
+          <div style={{ textAlign: 'left' }}>
+            <h3 style={{ fontSize: '1.4rem', fontWeight: 900, textTransform: 'uppercase', color: 'white', fontFamily: 'var(--font-display)' }}>
+              AI QUIZ GENERATOR
+            </h3>
+            <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Generate diagnostic multiple-choice exams on demand</p>
           </div>
         </div>
 
-        <form onSubmit={handleGenerate} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+        <form onSubmit={handleGenerate} style={{ display: 'flex', flexDirection: 'column', gap: '20px', textAlign: 'left' }}>
           <div>
-            <label style={{ display: 'block', fontSize: '0.86rem', fontWeight: 600, marginBottom: '8px', color: 'var(--text-secondary)' }}>
+            <label style={{ display: 'block', fontSize: '0.82rem', fontWeight: 800, fontFamily: 'var(--font-display)', textTransform: 'uppercase', marginBottom: '8px', color: '#ffffff' }}>
               Exam Topic or Concept Summary
             </label>
             <textarea
@@ -62,14 +64,14 @@ export function QuizGeneratorModal({ isOpen, onClose, onQuizCreated, apiKey }) {
               style={{
                 width: '100%',
                 padding: '14px',
-                borderRadius: '12px',
-                background: 'rgba(5, 8, 16, 0.85)',
-                border: '1px solid var(--border-color)',
+                borderRadius: '10px',
+                background: '#050508',
+                border: '1px solid rgba(255, 255, 255, 0.15)',
                 color: 'white',
-                fontSize: '0.92rem',
+                fontSize: '0.9rem',
                 outline: 'none',
                 resize: 'none',
-                fontFamily: 'var(--font-main)',
+                fontFamily: 'var(--font-sans)',
                 lineHeight: 1.5
               }}
             />
@@ -77,7 +79,7 @@ export function QuizGeneratorModal({ isOpen, onClose, onQuizCreated, apiKey }) {
 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
             <div>
-              <label style={{ display: 'block', fontSize: '0.86rem', fontWeight: 600, marginBottom: '8px', color: 'var(--text-secondary)' }}>
+              <label style={{ display: 'block', fontSize: '0.82rem', fontWeight: 800, fontFamily: 'var(--font-display)', textTransform: 'uppercase', marginBottom: '8px', color: '#ffffff' }}>
                 Subject Domain
               </label>
               <select
@@ -86,11 +88,11 @@ export function QuizGeneratorModal({ isOpen, onClose, onQuizCreated, apiKey }) {
                 style={{
                   width: '100%',
                   padding: '12px',
-                  borderRadius: '10px',
-                  background: 'rgba(5, 8, 16, 0.85)',
-                  border: '1px solid var(--border-color)',
+                  borderRadius: '8px',
+                  background: '#050508',
+                  border: '1px solid rgba(255, 255, 255, 0.15)',
                   color: 'white',
-                  fontSize: '0.88rem',
+                  fontSize: '0.85rem',
                   outline: 'none'
                 }}
               >
@@ -103,7 +105,7 @@ export function QuizGeneratorModal({ isOpen, onClose, onQuizCreated, apiKey }) {
             </div>
 
             <div>
-              <label style={{ display: 'block', fontSize: '0.86rem', fontWeight: 600, marginBottom: '8px', color: 'var(--text-secondary)' }}>
+              <label style={{ display: 'block', fontSize: '0.82rem', fontWeight: 800, fontFamily: 'var(--font-display)', textTransform: 'uppercase', marginBottom: '8px', color: '#ffffff' }}>
                 Questions Count
               </label>
               <select
@@ -112,11 +114,11 @@ export function QuizGeneratorModal({ isOpen, onClose, onQuizCreated, apiKey }) {
                 style={{
                   width: '100%',
                   padding: '12px',
-                  borderRadius: '10px',
-                  background: 'rgba(5, 8, 16, 0.85)',
-                  border: '1px solid var(--border-color)',
+                  borderRadius: '8px',
+                  background: '#050508',
+                  border: '1px solid rgba(255, 255, 255, 0.15)',
                   color: 'white',
-                  fontSize: '0.88rem',
+                  fontSize: '0.85rem',
                   outline: 'none'
                 }}
               >
@@ -128,18 +130,18 @@ export function QuizGeneratorModal({ isOpen, onClose, onQuizCreated, apiKey }) {
 
           <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '12px', marginTop: '12px' }}>
             <button type="button" onClick={onClose} disabled={loading} className="btn-secondary">
-              Cancel
+              CANCEL
             </button>
-            <button type="submit" disabled={loading || !topic.trim()} className="btn-emerald">
+            <button type="submit" disabled={loading || !topic.trim()} className="btn-liquid clunk-shimmer">
               {loading ? (
                 <>
-                  <Loader2 size={18} className="pulse-active" />
-                  <span>Synthesizing Exam...</span>
+                  <Loader2 size={16} />
+                  <span>SYNTHESIZING...</span>
                 </>
               ) : (
                 <>
                   <Sparkles size={16} />
-                  <span>Generate Quiz</span>
+                  <span>GENERATE QUIZ ↗</span>
                 </>
               )}
             </button>

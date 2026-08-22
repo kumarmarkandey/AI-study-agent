@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Plus, Search, Clock } from 'lucide-react';
+import { Plus, Search, Clock, ArrowUpRight } from 'lucide-react';
 
 export function NoteList({ notes, onSelectNote, onCreateNewNote }) {
   const [searchQuery, setSearchQuery] = useState('');
@@ -15,102 +15,118 @@ export function NoteList({ notes, onSelectNote, onCreateNewNote }) {
   });
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-      {/* Search and Filters Bar */}
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '16px' }}>
-        <div style={{ display: 'flex', gap: '12px', flex: 1, maxWidth: '520px' }}>
-          {/* Search Box */}
-          <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '10px',
-            background: 'rgba(255, 255, 255, 0.04)',
-            border: '1px solid var(--border-color)',
-            padding: '10px 16px',
-            borderRadius: '12px',
-            flex: 1
-          }}>
-            <Search size={18} color="var(--text-muted)" />
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search notes, formulas, code snippets..."
-              style={{
-                background: 'transparent',
-                border: 'none',
-                outline: 'none',
-                color: 'white',
-                fontSize: '0.92rem',
-                width: '100%',
-                fontFamily: 'var(--font-main)'
-              }}
-            />
-          </div>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '32px', textAlign: 'left' }}>
+      {/* Title & Action Bar */}
+      <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', flexWrap: 'wrap', gap: '20px' }}>
+        <div>
+          <span style={{ fontSize: '0.75rem', fontFamily: 'var(--font-display)', textTransform: 'uppercase', letterSpacing: '0.18em', color: 'var(--text-muted)' }}>
+            KNOWLEDGE BASE & NOTES
+          </span>
+          <h1 style={{ fontSize: 'clamp(2.2rem, 5vw, 3.8rem)', fontWeight: 900, textTransform: 'uppercase', color: '#ffffff', marginTop: '8px' }}>
+            SMART STUDY <span style={{ color: 'var(--color-grape-light)' }}>NOTES</span>
+          </h1>
         </div>
 
-        <button onClick={onCreateNewNote} className="btn-primary">
+        <button onClick={onCreateNewNote} className="btn-liquid clunk-shimmer">
           <Plus size={16} />
-          <span>New Smart Note</span>
+          <span>NEW SMART NOTE ↗</span>
+          <span className="clunk-shimmer-sweep" />
         </button>
       </div>
 
-      {/* Subject Filter Pills */}
-      <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-        {subjects.map(subj => (
-          <button
-            key={subj}
-            onClick={() => setSelectedSubject(subj)}
+      {/* Search & Subject Filters */}
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '16px' }}>
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '10px',
+          background: '#0a0a0f',
+          border: '1px solid rgba(255, 255, 255, 0.15)',
+          padding: '12px 18px',
+          borderRadius: '9999px',
+          flex: 1,
+          maxWidth: '520px'
+        }}>
+          <Search size={18} color="var(--text-muted)" />
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="SEARCH NOTES, FORMULAS, LATEX..."
             style={{
-              padding: '7px 16px',
-              borderRadius: '20px',
-              border: selectedSubject === subj ? '1px solid var(--accent-violet)' : '1px solid var(--border-color)',
-              background: selectedSubject === subj ? 'rgba(168, 85, 247, 0.16)' : 'transparent',
-              color: selectedSubject === subj ? 'var(--accent-violet)' : 'var(--text-secondary)',
+              background: 'transparent',
+              border: 'none',
+              outline: 'none',
+              color: 'white',
+              fontSize: '0.85rem',
               fontWeight: 600,
-              fontSize: '0.84rem',
-              cursor: 'pointer',
-              transition: 'all 0.2s ease'
+              width: '100%',
+              fontFamily: 'var(--font-display)',
+              letterSpacing: '0.05em'
             }}
-          >
-            {subj}
-          </button>
-        ))}
+          />
+        </div>
+
+        <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+          {subjects.map(subj => (
+            <button
+              key={subj}
+              onClick={() => setSelectedSubject(subj)}
+              style={{
+                padding: '8px 18px',
+                borderRadius: '9999px',
+                border: selectedSubject === subj ? '1px solid #ffffff' : '1px solid rgba(255, 255, 255, 0.18)',
+                background: selectedSubject === subj ? '#ffffff' : 'transparent',
+                color: selectedSubject === subj ? '#000000' : 'rgba(255, 255, 255, 0.7)',
+                fontWeight: 800,
+                fontFamily: 'var(--font-display)',
+                fontSize: '0.75rem',
+                textTransform: 'uppercase',
+                letterSpacing: '0.08em',
+                cursor: 'pointer',
+                transition: 'all 0.2s ease'
+              }}
+            >
+              {subj}
+            </button>
+          ))}
+        </div>
       </div>
 
       {/* Notes Grid */}
       <div style={{
         display: 'grid',
         gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
-        gap: '22px'
+        gap: '28px'
       }}>
         {filteredNotes.map(note => (
           <div
             key={note.id}
-            className="glass-panel glass-card-interactive"
+            className="clunk-card"
             onClick={() => onSelectNote(note)}
             style={{
-              padding: '26px',
+              padding: '28px',
               display: 'flex',
               flexDirection: 'column',
               justify: 'space-between',
-              minHeight: '230px'
+              minHeight: '240px',
+              cursor: 'pointer'
             }}
           >
             <div>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px' }}>
-                <span className="badge badge-violet">{note.subject || 'General'}</span>
-                <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                <span className="badge badge-grape">{note.subject || 'GENERAL'}</span>
+                <span style={{ fontSize: '0.75rem', fontFamily: 'var(--font-mono)', color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: '4px' }}>
                   <Clock size={12} /> {new Date(note.updatedAt).toLocaleDateString()}
                 </span>
               </div>
 
-              <h3 style={{ fontSize: '1.2rem', fontWeight: 700, marginBottom: '8px', color: 'white' }}>
+              <h3 style={{ fontSize: '1.25rem', fontWeight: 900, textTransform: 'uppercase', marginBottom: '8px', color: 'white', fontFamily: 'var(--font-display)' }}>
                 {note.title}
               </h3>
               
               <p style={{
-                fontSize: '0.86rem',
+                fontSize: '0.85rem',
                 color: 'var(--text-secondary)',
                 lineHeight: 1.5,
                 display: '-webkit-box',
@@ -123,12 +139,15 @@ export function NoteList({ notes, onSelectNote, onCreateNewNote }) {
               </p>
             </div>
 
-            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap', paddingTop: '14px', borderTop: '1px solid var(--border-color)' }}>
-              {note.tags && note.tags.map((tag, idx) => (
-                <span key={idx} style={{ fontSize: '0.72rem', padding: '3px 10px', borderRadius: '6px', background: 'rgba(255, 255, 255, 0.06)', color: 'var(--text-muted)', fontWeight: 500 }}>
-                  #{tag}
-                </span>
-              ))}
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: '16px', borderTop: '1px solid rgba(255, 255, 255, 0.08)' }}>
+              <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
+                {note.tags && note.tags.map((tag, idx) => (
+                  <span key={idx} style={{ fontSize: '0.68rem', padding: '3px 8px', borderRadius: '4px', background: 'rgba(255, 255, 255, 0.08)', color: 'var(--text-muted)', fontWeight: 700, fontFamily: 'var(--font-mono)' }}>
+                    #{tag}
+                  </span>
+                ))}
+              </div>
+              <ArrowUpRight size={16} color="var(--color-grape-light)" />
             </div>
           </div>
         ))}

@@ -92,28 +92,36 @@ export function ChatInterface({ apiKey, onCreateDeckFromChat, onCreateNoteFromCh
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', height: 'calc(100vh - 120px)' }}>
-      {/* Top Persona Selection */}
-      <div className="glass-panel" style={{ padding: '18px 22px' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px' }}>
-          <span style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--text-secondary)' }}>
-            Select AI Tutor Mode:
-          </span>
-          <button onClick={handleClearChat} className="btn-secondary" style={{ padding: '5px 12px', fontSize: '0.78rem' }}>
-            <Trash2 size={14} /> Clear Chat
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', height: 'calc(100vh - 120px)', textAlign: 'left' }}>
+      {/* Title & Persona Selector Header */}
+      <div className="clunk-card" style={{ padding: '20px 24px', background: '#0e0e14' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+          <div>
+            <span style={{ fontSize: '0.72rem', fontFamily: 'var(--font-display)', textTransform: 'uppercase', letterSpacing: '0.18em', color: 'var(--text-muted)' }}>
+              SOCRATIC DIALOGUE ENGINE
+            </span>
+            <h2 style={{ fontSize: '1.4rem', fontWeight: 900, textTransform: 'uppercase', color: '#ffffff', fontFamily: 'var(--font-display)', marginTop: '4px' }}>
+              SOCRATIC <span style={{ color: 'var(--color-grape-light)' }}>AI TUTOR</span>
+            </h2>
+          </div>
+
+          <button onClick={handleClearChat} className="btn-secondary" style={{ padding: '6px 14px', fontSize: '0.75rem' }}>
+            <Trash2 size={14} /> CLEAR CHAT
           </button>
         </div>
+
         <PersonaSelector activePersona={persona} onSelectPersona={setPersona} />
       </div>
 
       {/* Main Chat Log Area */}
-      <div className="glass-panel" style={{
+      <div className="clunk-card" style={{
         flex: 1,
-        padding: '26px',
+        padding: '28px',
         overflowY: 'auto',
         display: 'flex',
         flexDirection: 'column',
-        gap: '18px'
+        gap: '20px',
+        background: '#0a0a0f'
       }}>
         {messages.map(msg => {
           const isUser = msg.role === 'user';
@@ -132,63 +140,63 @@ export function ChatInterface({ apiKey, onCreateDeckFromChat, onCreateNoteFromCh
                 <div style={{
                   width: '38px',
                   height: '38px',
-                  borderRadius: '12px',
-                  background: 'linear-gradient(135deg, #38bdf8 0%, #a855f7 100%)',
+                  borderRadius: '10px',
+                  background: 'linear-gradient(135deg, var(--color-grape) 0%, var(--color-grape-deep) 100%)',
                   display: 'flex',
                   alignItems: 'center',
                   justify: 'center',
                   flexShrink: 0,
-                  boxShadow: 'var(--shadow-glow-cyan)'
+                  boxShadow: '0 0 15px var(--color-grape-glow)'
                 }}>
-                  <Bot size={22} color="white" />
+                  <Bot size={20} color="white" />
                 </div>
               )}
 
               <div style={{
-                padding: '18px 22px',
-                borderRadius: '18px',
-                background: isUser ? 'linear-gradient(135deg, #0284c7 0%, #6366f1 100%)' : 'rgba(255, 255, 255, 0.05)',
-                border: isUser ? 'none' : '1px solid var(--border-color)',
-                color: '#f8fafc',
+                padding: '20px 24px',
+                borderRadius: '16px',
+                background: isUser ? '#ffffff' : '#12121c',
+                border: isUser ? 'none' : '1px solid rgba(255, 255, 255, 0.12)',
+                color: isUser ? '#000000' : '#ffffff',
                 lineHeight: 1.65,
-                fontSize: '0.95rem',
-                borderTopRightRadius: isUser ? '4px' : '18px',
-                borderTopLeftRadius: isUser ? '18px' : '4px',
-                boxShadow: isUser ? '0 4px 16px rgba(2, 132, 199, 0.3)' : 'none'
+                fontSize: '0.94rem',
+                borderTopRightRadius: isUser ? '4px' : '16px',
+                borderTopLeftRadius: isUser ? '16px' : '4px',
+                fontFamily: 'var(--font-sans)'
               }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px', gap: '14px' }}>
-                  <span style={{ fontSize: '0.78rem', fontWeight: 700, color: isUser ? 'rgba(255, 255, 255, 0.88)' : 'var(--accent-cyan)' }}>
-                    {isUser ? 'You' : 'Socratic Tutor'}
+                  <span style={{ fontSize: '0.78rem', fontWeight: 800, fontFamily: 'var(--font-display)', textTransform: 'uppercase', color: isUser ? '#000000' : 'var(--color-grape-light)' }}>
+                    {isUser ? 'YOU' : 'SOCRATIC TUTOR'}
                   </span>
-                  <span style={{ fontSize: '0.72rem', color: isUser ? 'rgba(255, 255, 255, 0.65)' : 'var(--text-muted)' }}>
+                  <span style={{ fontSize: '0.72rem', fontFamily: 'var(--font-mono)', color: isUser ? 'rgba(0,0,0,0.6)' : 'var(--text-muted)' }}>
                     {msg.timestamp}
                   </span>
                 </div>
 
-                <div style={{ whiteSpace: 'pre-wrap' }}>
+                <div style={{ whiteSpace: 'pre-wrap', fontWeight: isUser ? 600 : 400 }}>
                   {msg.content}
                 </div>
 
                 {/* AI Response Quick Action Toolbar */}
                 {!isUser && (
-                  <div style={{ display: 'flex', gap: '12px', marginTop: '14px', paddingTop: '12px', borderTop: '1px solid rgba(255, 255, 255, 0.08)', flexWrap: 'wrap' }}>
+                  <div style={{ display: 'flex', gap: '14px', marginTop: '16px', paddingTop: '14px', borderTop: '1px solid rgba(255, 255, 255, 0.08)', flexWrap: 'wrap' }}>
                     <button 
                       onClick={() => handleSpeak(msg.content)}
-                      style={{ background: 'transparent', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '5px', fontSize: '0.78rem' }}
+                      style={{ background: 'transparent', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '5px', fontSize: '0.75rem', fontFamily: 'var(--font-display)', textTransform: 'uppercase', fontWeight: 700 }}
                     >
-                      <Volume2 size={14} /> Listen
+                      <Volume2 size={14} /> LISTEN
                     </button>
                     <button 
                       onClick={() => onCreateDeckFromChat(msg.content)}
-                      style={{ background: 'transparent', border: 'none', color: 'var(--accent-cyan)', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '5px', fontSize: '0.78rem', fontWeight: 600 }}
+                      style={{ background: 'transparent', border: 'none', color: 'var(--color-grape-light)', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '5px', fontSize: '0.75rem', fontFamily: 'var(--font-display)', textTransform: 'uppercase', fontWeight: 800 }}
                     >
-                      <Layers size={14} /> Save as Deck
+                      <Layers size={14} /> SAVE AS DECK
                     </button>
                     <button 
                       onClick={() => onCreateNoteFromChat(msg.content)}
-                      style={{ background: 'transparent', border: 'none', color: 'var(--accent-violet)', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '5px', fontSize: '0.78rem', fontWeight: 600 }}
+                      style={{ background: 'transparent', border: 'none', color: '#ffffff', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '5px', fontSize: '0.75rem', fontFamily: 'var(--font-display)', textTransform: 'uppercase', fontWeight: 800 }}
                     >
-                      <BookOpen size={14} /> Save as Note
+                      <BookOpen size={14} /> SAVE AS NOTE
                     </button>
                   </div>
                 )}
@@ -198,14 +206,16 @@ export function ChatInterface({ apiKey, onCreateDeckFromChat, onCreateNoteFromCh
                 <div style={{
                   width: '38px',
                   height: '38px',
-                  borderRadius: '12px',
-                  background: 'rgba(255, 255, 255, 0.1)',
+                  borderRadius: '10px',
+                  background: '#ffffff',
+                  color: '#000000',
                   display: 'flex',
                   alignItems: 'center',
                   justify: 'center',
+                  fontWeight: 900,
                   flexShrink: 0
                 }}>
-                  <User size={22} color="white" />
+                  <User size={20} color="#000000" />
                 </div>
               )}
             </div>
@@ -213,9 +223,9 @@ export function ChatInterface({ apiKey, onCreateDeckFromChat, onCreateNoteFromCh
         })}
 
         {loading && (
-          <div style={{ display: 'flex', gap: '14px', alignItems: 'center', color: 'var(--text-muted)', fontSize: '0.9rem' }}>
-            <div style={{ width: '38px', height: '38px', borderRadius: '12px', background: 'rgba(56, 189, 248, 0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <Loader2 size={20} className="pulse-active" color="var(--accent-cyan)" />
+          <div style={{ display: 'flex', gap: '14px', alignItems: 'center', color: 'var(--text-muted)', fontSize: '0.85rem', fontFamily: 'var(--font-mono)' }}>
+            <div style={{ width: '38px', height: '38px', borderRadius: '10px', background: 'rgba(147, 51, 234, 0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <Loader2 size={18} color="var(--color-grape-light)" />
             </div>
             <span>Socratic AI is formulating response...</span>
           </div>
@@ -225,26 +235,26 @@ export function ChatInterface({ apiKey, onCreateDeckFromChat, onCreateNoteFromCh
       </div>
 
       {/* Input Box */}
-      <form onSubmit={handleSend} className="glass-panel" style={{ padding: '14px 18px', display: 'flex', gap: '12px' }}>
+      <form onSubmit={handleSend} className="clunk-card" style={{ padding: '12px 18px', display: 'flex', gap: '12px', background: '#0e0e14' }}>
         <input
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          placeholder="Ask a concept question, request a step-by-step math proof, or test your knowledge..."
+          placeholder="Ask a concept question, request a step-by-step math proof..."
           style={{
             flex: 1,
             background: 'transparent',
             border: 'none',
             outline: 'none',
             color: 'white',
-            fontSize: '0.95rem',
+            fontSize: '0.92rem',
             padding: '6px 8px',
-            fontFamily: 'var(--font-main)'
+            fontFamily: 'var(--font-sans)'
           }}
         />
-        <button type="submit" className="btn-primary" disabled={loading || !input.trim()}>
-          <Send size={16} />
-          <span>Send</span>
+        <button type="submit" className="btn-liquid clunk-shimmer" disabled={loading || !input.trim()} style={{ padding: '10px 22px', fontSize: '0.78rem' }}>
+          <Send size={15} />
+          <span>SEND</span>
         </button>
       </form>
     </div>

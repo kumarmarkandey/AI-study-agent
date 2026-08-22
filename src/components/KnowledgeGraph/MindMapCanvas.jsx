@@ -6,11 +6,11 @@ export function MindMapCanvas({ decks, notes, onNavigateToDeck, onNavigateToNote
 
   // Generate nodes from decks and notes
   const nodes = [
-    { id: 'root', label: 'OmniStudy Knowledge Network', type: 'root', x: 400, y: 220, color: '#38bdf8' },
+    { id: 'root', label: 'CLUNK KNOWLEDGE OS', type: 'root', x: 400, y: 220, color: 'var(--color-grape-light)' },
 
     // Subject Hubs
     { id: 'subj-cs', label: 'Computer Science', type: 'subject', x: 200, y: 120, color: '#38bdf8', parent: 'root' },
-    { id: 'subj-phys', label: 'Quantum Physics', type: 'subject', x: 600, y: 120, color: '#a855f7', parent: 'root' },
+    { id: 'subj-phys', label: 'Quantum Physics', type: 'subject', x: 600, y: 120, color: 'var(--color-grape-light)', parent: 'root' },
     { id: 'subj-bio', label: 'Cellular Biology', type: 'subject', x: 400, y: 360, color: '#10b981', parent: 'root' },
 
     // Dynamic items
@@ -22,7 +22,7 @@ export function MindMapCanvas({ decks, notes, onNavigateToDeck, onNavigateToNote
       item: d,
       x: d.subject === 'Physics' ? 680 + (i * 20) : d.subject === 'Biology' ? 520 : 120 + (i * 40),
       y: d.subject === 'Physics' ? 200 : d.subject === 'Biology' ? 440 : 200 + (i * 60),
-      color: d.color || '#38bdf8',
+      color: 'var(--color-grape-light)',
       parent: d.subject === 'Physics' ? 'subj-phys' : d.subject === 'Biology' ? 'subj-bio' : 'subj-cs'
     })),
 
@@ -34,29 +34,32 @@ export function MindMapCanvas({ decks, notes, onNavigateToDeck, onNavigateToNote
       item: n,
       x: n.subject === 'Physics' ? 540 : n.subject === 'Biology' ? 280 : 100,
       y: n.subject === 'Physics' ? 40 : n.subject === 'Biology' ? 420 : 60 + (i * 70),
-      color: '#a855f7',
+      color: '#ffffff',
       parent: n.subject === 'Physics' ? 'subj-phys' : n.subject === 'Biology' ? 'subj-bio' : 'subj-cs'
     }))
   ];
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '22px' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '14px' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '32px', textAlign: 'left' }}>
+      {/* Title */}
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '20px' }}>
         <div>
-          <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'white' }}>Interactive Knowledge Mind Map</h3>
-          <p style={{ fontSize: '0.86rem', color: 'var(--text-secondary)' }}>
-            Visualize connections between subject domains, smart notes, and spaced repetition flashcard decks.
-          </p>
+          <span style={{ fontSize: '0.75rem', fontFamily: 'var(--font-display)', textTransform: 'uppercase', letterSpacing: '0.18em', color: 'var(--text-muted)' }}>
+            NEURAL GRAPH & KNOWLEDGE CANVAS
+          </span>
+          <h1 style={{ fontSize: 'clamp(2.2rem, 5vw, 3.8rem)', fontWeight: 900, textTransform: 'uppercase', color: '#ffffff', marginTop: '8px' }}>
+            INTERACTIVE <span style={{ color: 'var(--color-grape-light)' }}>MIND MAP</span>
+          </h1>
         </div>
 
-        <div style={{ display: 'flex', gap: '12px' }}>
-          <span className="badge badge-cyan" style={{ gap: '6px' }}><Layers size={13} /> Flashcard Decks</span>
-          <span className="badge badge-violet" style={{ gap: '6px' }}><BookOpen size={13} /> Smart Notes</span>
+        <div style={{ display: 'flex', gap: '10px' }}>
+          <span className="badge badge-grape" style={{ gap: '6px' }}><Layers size={13} /> FLASHCARD DECKS</span>
+          <span className="badge badge-white" style={{ gap: '6px' }}><BookOpen size={13} /> SMART NOTES</span>
         </div>
       </div>
 
       {/* Mind Map Canvas */}
-      <div className="glass-panel" style={{ position: 'relative', width: '100%', height: '520px', overflow: 'hidden', borderRadius: '22px' }}>
+      <div className="clunk-card" style={{ position: 'relative', width: '100%', height: '540px', overflow: 'hidden', background: '#0a0a0f', border: '1px solid rgba(255, 255, 255, 0.18)' }}>
         <svg width="100%" height="100%" viewBox="0 0 800 500" style={{ width: '100%', height: '100%' }}>
           {/* Connector Lines */}
           {nodes.filter(n => n.parent).map(n => {
@@ -81,7 +84,7 @@ export function MindMapCanvas({ decks, notes, onNavigateToDeck, onNavigateToNote
           {/* Node Elements */}
           {nodes.map(n => {
             const isSelected = selectedNode?.id === n.id;
-            const radius = n.type === 'root' ? 28 : n.type === 'subject' ? 22 : 16;
+            const radius = n.type === 'root' ? 30 : n.type === 'subject' ? 24 : 18;
 
             return (
               <g
@@ -97,7 +100,7 @@ export function MindMapCanvas({ decks, notes, onNavigateToDeck, onNavigateToNote
                   stroke={n.color}
                   strokeWidth={isSelected ? 3 : 2}
                   style={{
-                    filter: isSelected ? `drop-shadow(0 0 14px ${n.color})` : 'none'
+                    filter: isSelected ? `drop-shadow(0 0 16px ${n.color})` : 'none'
                   }}
                 />
                 <circle cx={n.x} cy={n.y} r={radius / 2.5} fill={n.color} />
@@ -107,12 +110,13 @@ export function MindMapCanvas({ decks, notes, onNavigateToDeck, onNavigateToNote
                   x={n.x}
                   y={n.y + radius + 18}
                   textAnchor="middle"
-                  fill="#f8fafc"
-                  fontSize={n.type === 'root' ? 13 : 11}
-                  fontWeight={n.type === 'root' || n.type === 'subject' ? 700 : 500}
-                  fontFamily="var(--font-heading)"
+                  fill="#ffffff"
+                  fontSize={n.type === 'root' ? 12 : 10}
+                  fontWeight={800}
+                  fontFamily="var(--font-display)"
+                  letterSpacing="0.05em"
                 >
-                  {n.label.length > 25 ? n.label.slice(0, 22) + '...' : n.label}
+                  {n.label.length > 25 ? n.label.slice(0, 22) + '...' : n.label.toUpperCase()}
                 </text>
               </g>
             );
@@ -121,49 +125,47 @@ export function MindMapCanvas({ decks, notes, onNavigateToDeck, onNavigateToNote
 
         {/* Selected Node Details Drawer */}
         {selectedNode && (
-          <div className="glass-panel" style={{
+          <div className="clunk-card" style={{
             position: 'absolute',
             bottom: '22px',
             right: '22px',
             width: '320px',
-            padding: '22px',
-            background: 'rgba(11, 15, 25, 0.96)',
+            padding: '24px',
+            background: '#0e0e14',
             borderColor: selectedNode.color,
-            boxShadow: `0 8px 30px rgba(0,0,0,0.6), 0 0 20px ${selectedNode.color}30`
+            boxShadow: `0 10px 40px rgba(0,0,0,0.8)`
           }}>
             <button
               onClick={() => setSelectedNode(null)}
-              style={{ position: 'absolute', right: '14px', top: '14px', background: 'transparent', border: 'none', color: 'var(--text-muted)', cursor: 'pointer' }}
+              style={{ position: 'absolute', right: '14px', top: '14px', background: 'transparent', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', fontSize: '1.2rem' }}
             >
               ×
             </button>
 
-            <span className="badge" style={{ background: `${selectedNode.color}20`, color: selectedNode.color, marginBottom: '8px' }}>
+            <span className="badge badge-grape" style={{ marginBottom: '8px' }}>
               {selectedNode.type.toUpperCase()}
             </span>
-            <h4 style={{ fontSize: '1.1rem', fontWeight: 700, color: 'white', margin: '6px 0 14px' }}>
+            <h4 style={{ fontSize: '1.15rem', fontWeight: 900, textTransform: 'uppercase', color: 'white', margin: '8px 0 16px', fontFamily: 'var(--font-display)' }}>
               {selectedNode.label}
             </h4>
 
             {selectedNode.type === 'deck' && (
               <button
                 onClick={() => onNavigateToDeck(selectedNode.item)}
-                className="btn-primary"
+                className="btn-liquid clunk-shimmer"
                 style={{ width: '100%', justifyContent: 'center', marginTop: '8px' }}
               >
-                <span>Open Deck</span>
-                <ArrowRight size={16} />
+                <span>OPEN DECK ↗</span>
               </button>
             )}
 
             {selectedNode.type === 'note' && (
               <button
                 onClick={() => onNavigateToNote(selectedNode.item)}
-                className="btn-violet"
+                className="btn-secondary"
                 style={{ width: '100%', justifyContent: 'center', marginTop: '8px' }}
               >
-                <span>Read Smart Note</span>
-                <ArrowRight size={16} />
+                <span>READ SMART NOTE ↗</span>
               </button>
             )}
           </div>

@@ -9,7 +9,9 @@ import {
   Network, 
   CheckSquare,
   Sparkles,
-  X
+  X,
+  Flame,
+  Zap
 } from 'lucide-react';
 
 export function Sidebar({ activeTab, setActiveTab, isOpen, onClose }) {
@@ -24,6 +26,8 @@ export function Sidebar({ activeTab, setActiveTab, isOpen, onClose }) {
     { id: 'planner', label: 'Task Planner', icon: CheckSquare },
   ];
 
+  if (!isOpen && window.innerWidth < 1024) return null;
+
   return (
     <>
       {/* Mobile Backdrop Overlay */}
@@ -33,27 +37,26 @@ export function Sidebar({ activeTab, setActiveTab, isOpen, onClose }) {
           style={{
             position: 'fixed',
             inset: 0,
-            background: 'rgba(5, 8, 16, 0.75)',
-            backdropFilter: 'blur(8px)',
+            background: 'rgba(0, 0, 0, 0.85)',
+            backdropFilter: 'blur(12px)',
             zIndex: 49,
             display: 'block'
           }}
         />
       )}
 
-      {/* Sidebar Container */}
+      {/* Sidebar Drawer (Mobile & Compact View) */}
       <aside 
-        className="sidebar-drawer"
         style={{
           width: '260px',
           height: '100vh',
           position: 'fixed',
           left: 0,
           top: 0,
-          background: 'rgba(11, 15, 25, 0.96)',
+          background: 'rgba(5, 5, 5, 0.96)',
           backdropFilter: 'blur(24px)',
           WebkitBackdropFilter: 'blur(24px)',
-          borderRight: '1px solid var(--border-color)',
+          borderRight: '1px solid rgba(255, 255, 255, 0.12)',
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'space-between',
@@ -64,7 +67,7 @@ export function Sidebar({ activeTab, setActiveTab, isOpen, onClose }) {
         }}
       >
         <div>
-          {/* Logo & Close Button Header */}
+          {/* Logo & Close */}
           <div style={{
             display: 'flex',
             alignItems: 'center',
@@ -74,28 +77,37 @@ export function Sidebar({ activeTab, setActiveTab, isOpen, onClose }) {
           }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
               <div style={{
-                width: '40px',
-                height: '40px',
-                borderRadius: '12px',
-                background: 'linear-gradient(135deg, #38bdf8 0%, #a855f7 100%)',
+                width: '36px',
+                height: '36px',
+                borderRadius: '8px',
+                background: '#ffffff',
+                color: '#000000',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                boxShadow: 'var(--shadow-glow-cyan)'
+                fontWeight: 900,
+                fontFamily: 'var(--font-display)',
+                fontSize: '1rem'
               }}>
-                <Sparkles size={22} color="white" />
+                C
               </div>
               <div>
-                <h1 style={{ fontSize: '1.25rem', fontWeight: 800, letterSpacing: '-0.5px', color: 'white' }}>
-                  Omni<span className="gradient-text-cyan">Study AI</span>
+                <h1 style={{ 
+                  fontSize: '1.05rem', 
+                  fontFamily: 'var(--font-display)', 
+                  fontWeight: 900, 
+                  letterSpacing: '0.08em', 
+                  color: 'white',
+                  textTransform: 'uppercase' 
+                }}>
+                  CLUNK <span style={{ color: 'var(--color-grape-light)' }}>STUDY</span>
                 </h1>
-                <p style={{ fontSize: '0.72rem', color: 'var(--text-muted)', fontWeight: 500 }}>
-                  Smart Cognitive Companion
+                <p style={{ fontSize: '0.68rem', color: 'var(--text-muted)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                  BUILD YOUR BRAIN
                 </p>
               </div>
             </div>
 
-            {/* Mobile Close Button */}
             {onClose && (
               <button 
                 onClick={onClose}
@@ -104,8 +116,7 @@ export function Sidebar({ activeTab, setActiveTab, isOpen, onClose }) {
                   border: 'none',
                   color: 'var(--text-muted)',
                   cursor: 'pointer',
-                  padding: '6px',
-                  display: window.innerWidth < 1024 ? 'block' : 'none'
+                  padding: '6px'
                 }}
               >
                 <X size={20} />
@@ -113,7 +124,7 @@ export function Sidebar({ activeTab, setActiveTab, isOpen, onClose }) {
             )}
           </div>
 
-          {/* Navigation Items */}
+          {/* Nav Items */}
           <nav style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
             {navItems.map(item => {
               const Icon = item.icon;
@@ -132,23 +143,25 @@ export function Sidebar({ activeTab, setActiveTab, isOpen, onClose }) {
                     justifyContent: 'space-between',
                     width: '100%',
                     padding: '11px 14px',
-                    borderRadius: '12px',
-                    border: 'none',
-                    background: isActive ? 'linear-gradient(90deg, rgba(56, 189, 248, 0.16) 0%, rgba(168, 85, 247, 0.12) 100%)' : 'transparent',
-                    color: isActive ? 'var(--accent-cyan)' : 'var(--text-secondary)',
-                    fontWeight: isActive ? 600 : 500,
-                    fontSize: '0.92rem',
+                    borderRadius: '10px',
+                    border: isActive ? '1px solid var(--color-grape-light)' : '1px solid transparent',
+                    background: isActive ? 'rgba(147, 51, 234, 0.15)' : 'transparent',
+                    color: isActive ? '#ffffff' : 'var(--text-secondary)',
+                    fontWeight: isActive ? 800 : 600,
+                    fontFamily: 'var(--font-display)',
+                    fontSize: '0.85rem',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.05em',
                     cursor: 'pointer',
-                    transition: 'all 0.2s ease',
-                    borderLeft: isActive ? '3px solid var(--accent-cyan)' : '3px solid transparent'
+                    transition: 'all 0.2s ease'
                   }}
                 >
                   <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                    <Icon size={19} color={isActive ? 'var(--accent-cyan)' : 'var(--text-muted)'} />
+                    <Icon size={18} color={isActive ? 'var(--color-grape-light)' : 'var(--text-muted)'} />
                     <span>{item.label}</span>
                   </div>
                   {item.badge && (
-                    <span className={item.badge === 'SRS' ? 'badge badge-cyan' : 'badge badge-violet'} style={{ fontSize: '0.65rem' }}>
+                    <span className="badge badge-grape" style={{ fontSize: '0.62rem' }}>
                       {item.badge}
                     </span>
                   )}
@@ -158,22 +171,21 @@ export function Sidebar({ activeTab, setActiveTab, isOpen, onClose }) {
           </nav>
         </div>
 
-        {/* AI Assistant Quick Status */}
-        <div className="glass-panel" style={{ padding: '14px 16px', borderRadius: '14px', background: 'rgba(255, 255, 255, 0.02)' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '6px' }}>
-            <div style={{
-              width: '8px',
-              height: '8px',
-              borderRadius: '50%',
-              backgroundColor: '#10b981',
-              boxShadow: '0 0 10px #10b981'
-            }} />
-            <span style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--text-primary)' }}>
-              AI Cognitive Engine
+        {/* Clunk Status Footer */}
+        <div style={{ 
+          padding: '16px', 
+          borderRadius: '14px', 
+          background: 'rgba(255, 255, 255, 0.03)',
+          border: '1px solid rgba(255, 255, 255, 0.08)' 
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px' }}>
+            <Zap size={14} color="var(--color-grape-light)" />
+            <span style={{ fontSize: '0.78rem', fontWeight: 800, fontFamily: 'var(--font-display)', textTransform: 'uppercase', color: '#ffffff' }}>
+              CLUNK COGNITIVE OS
             </span>
           </div>
-          <p style={{ fontSize: '0.72rem', color: 'var(--text-muted)', lineHeight: 1.4 }}>
-            SRS flashcards, quiz drills & Socratic tutoring active.
+          <p style={{ fontSize: '0.7rem', color: 'var(--text-muted)', lineHeight: 1.4 }}>
+            Active recall engine & Socratic AI ready.
           </p>
         </div>
       </aside>

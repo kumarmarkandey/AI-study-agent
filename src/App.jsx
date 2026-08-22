@@ -13,6 +13,7 @@ import { PomodoroTimer } from './components/Focus/PomodoroTimer';
 import { MindMapCanvas } from './components/KnowledgeGraph/MindMapCanvas';
 import { KanbanBoard } from './components/Planner/KanbanBoard';
 import { SettingsModal } from './components/Settings/SettingsModal';
+import { Footer } from './components/Footer';
 
 import { loadInitialAppData, setStoredData } from './services/storage';
 
@@ -100,6 +101,14 @@ export default function App() {
     setActiveQuiz(null);
   };
 
+  const handleTabChange = (tab) => {
+    setActiveTab(tab);
+    setActiveDeck(null);
+    setActiveNote(null);
+    setActiveQuiz(null);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   // Cross-module AI creations from Socratic Chat
   const handleCreateDeckFromChat = (content) => {
     const newDeck = {
@@ -107,7 +116,7 @@ export default function App() {
       title: `Deck: ${content.slice(0, 24)}...`,
       subject: 'Computer Science',
       category: 'AI Chat',
-      color: '#38bdf8',
+      color: '#9333ea',
       description: 'Created from Socratic AI conversation response.',
       createdAt: new Date().toISOString().split('T')[0],
       cards: [
@@ -126,7 +135,7 @@ export default function App() {
     };
     handleDeckCreated(newDeck);
     alert('Flashcard Deck created from AI response! Switched to AI Flashcards tab.');
-    setActiveTab('flashcards');
+    handleTabChange('flashcards');
   };
 
   const handleCreateNoteFromChat = (content) => {
@@ -140,25 +149,21 @@ export default function App() {
     };
     handleNoteSaved(newNote);
     alert('Saved AI Response as a Smart Note!');
-    setActiveTab('notes');
+    handleTabChange('notes');
   };
 
   return (
-    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: '#050505', color: '#ffffff' }}>
       <Sidebar 
         activeTab={activeTab} 
-        setActiveTab={(tab) => { 
-          setActiveTab(tab); 
-          setActiveDeck(null); 
-          setActiveNote(null); 
-          setActiveQuiz(null); 
-        }} 
+        setActiveTab={handleTabChange} 
         isOpen={isMobileMenuOpen}
         onClose={() => setIsMobileMenuOpen(false)}
       />
 
       <Header
         activeTab={activeTab}
+        setActiveTab={handleTabChange}
         streak={streak}
         apiKey={settings.apiKey}
         onOpenSettings={() => setIsSettingsOpen(true)}
@@ -168,10 +173,12 @@ export default function App() {
       <main 
         className="main-content-container"
         style={{ 
-          marginLeft: '260px', 
-          padding: '32px', 
+          width: '100%',
+          maxWidth: '1600px',
+          margin: '0 auto',
+          padding: '32px 28px',
           flex: 1,
-          transition: 'margin-left 0.3s ease'
+          boxSizing: 'border-box'
         }}
       >
         <div key={activeTab} className="tab-fade-in">
@@ -181,7 +188,7 @@ export default function App() {
               notes={notes}
               quizzes={quizzes}
               results={results}
-              setActiveTab={setActiveTab}
+              setActiveTab={handleTabChange}
             />
           )}
 
@@ -268,6 +275,8 @@ export default function App() {
           )}
         </div>
       </main>
+
+      <Footer onOpenSettings={() => setIsSettingsOpen(true)} setActiveTab={handleTabChange} />
 
       <SettingsModal
         isOpen={isSettingsOpen}

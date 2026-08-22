@@ -44,7 +44,7 @@ export function QuizPlayer({ quiz, onCompleteQuiz, onBack }) {
   const handleGetHint = () => {
     setHints(prev => ({
       ...prev,
-      [currentQIndex]: `💡 Hint: Focus on the fundamental formula or concept definition. Eliminate options that contradict core assumptions!`
+      [currentQIndex]: `💡 Hint: Focus on core principle definitions. Eliminate options that contradict basic domain rules!`
     }));
   };
 
@@ -85,28 +85,28 @@ export function QuizPlayer({ quiz, onCompleteQuiz, onBack }) {
   };
 
   return (
-    <div style={{ maxWidth: '880px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '28px' }}>
+    <div style={{ maxWidth: '880px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '28px', textAlign: 'left' }}>
       {/* Quiz Top Bar */}
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <button onClick={onBack} className="btn-secondary">
-          <ArrowLeft size={18} />
-          <span>Exit Practice</span>
+        <button onClick={onBack} className="btn-secondary" style={{ gap: '8px' }}>
+          <ArrowLeft size={16} />
+          <span>EXIT PRACTICE</span>
         </button>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '10px 20px', borderRadius: '24px', background: 'rgba(245, 158, 11, 0.15)', border: '1px solid rgba(245, 158, 11, 0.35)', color: '#f59e0b', fontWeight: 700, fontSize: '0.92rem' }}>
-          <Clock size={18} />
-          <span>Time Remaining: {formatTime(timeLeft)}</span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '10px 20px', borderRadius: '9999px', background: 'rgba(147, 51, 234, 0.18)', border: '1px solid var(--color-grape-light)', color: 'var(--color-grape-light)', fontWeight: 800, fontFamily: 'var(--font-mono)', fontSize: '0.85rem' }}>
+          <Clock size={16} />
+          <span>TIME REMAINING: {formatTime(timeLeft)}</span>
         </div>
       </div>
 
       {/* Question Card */}
-      <div className="glass-panel" style={{ padding: '40px' }}>
+      <div className="clunk-card" style={{ padding: '40px', background: '#0e0e14' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '22px' }}>
-          <span className="badge badge-cyan">Question {currentQIndex + 1} of {quiz.questions.length}</span>
-          <span className="badge badge-violet">{quiz.subject}</span>
+          <span className="badge badge-grape">QUESTION {currentQIndex + 1} OF {quiz.questions.length}</span>
+          <span className="badge badge-white">{quiz.subject}</span>
         </div>
 
-        <h3 style={{ fontSize: '1.45rem', fontWeight: 700, marginBottom: '30px', lineHeight: 1.55, color: 'white' }}>
+        <h3 style={{ fontSize: '1.45rem', fontWeight: 800, marginBottom: '30px', lineHeight: 1.5, color: 'white', fontFamily: 'var(--font-display)' }}>
           {currentQ.question}
         </h3>
 
@@ -117,8 +117,8 @@ export function QuizPlayer({ quiz, onCompleteQuiz, onBack }) {
             const isSubmitted = showExplanation[currentQIndex];
             const isCorrect = currentQ.correctAnswerIndex === idx;
 
-            let bgColor = 'rgba(255, 255, 255, 0.04)';
-            let borderColor = 'var(--border-color)';
+            let bgColor = 'rgba(255, 255, 255, 0.03)';
+            let borderColor = 'rgba(255, 255, 255, 0.14)';
             let textColor = 'var(--text-primary)';
 
             if (isSubmitted) {
@@ -132,8 +132,8 @@ export function QuizPlayer({ quiz, onCompleteQuiz, onBack }) {
                 textColor = '#f43f5e';
               }
             } else if (isSelected) {
-              bgColor = 'rgba(56, 189, 248, 0.16)';
-              borderColor = '#38bdf8';
+              bgColor = 'rgba(147, 51, 234, 0.2)';
+              borderColor = 'var(--color-grape-light)';
             }
 
             return (
@@ -145,21 +145,22 @@ export function QuizPlayer({ quiz, onCompleteQuiz, onBack }) {
                   alignItems: 'center',
                   justify: 'space-between',
                   padding: '18px 24px',
-                  borderRadius: '16px',
+                  borderRadius: '12px',
                   border: `1px solid ${borderColor}`,
                   background: bgColor,
                   color: textColor,
-                  fontSize: '1.02rem',
-                  fontWeight: isSelected ? 600 : 400,
+                  fontSize: '0.98rem',
+                  fontWeight: isSelected ? 700 : 500,
                   cursor: 'pointer',
                   textAlign: 'left',
                   transition: 'all 0.2s ease',
-                  lineHeight: 1.5
+                  lineHeight: 1.5,
+                  fontFamily: 'var(--font-sans)'
                 }}
               >
                 <span>{String.fromCharCode(65 + idx)}. {option}</span>
-                {isSubmitted && isCorrect && <CheckCircle2 size={22} color="#10b981" />}
-                {isSubmitted && isSelected && !isCorrect && <XCircle size={22} color="#f43f5e" />}
+                {isSubmitted && isCorrect && <CheckCircle2 size={20} color="#10b981" />}
+                {isSubmitted && isSelected && !isCorrect && <XCircle size={20} color="#f43f5e" />}
               </button>
             );
           })}
@@ -167,44 +168,44 @@ export function QuizPlayer({ quiz, onCompleteQuiz, onBack }) {
 
         {/* AI Hint Section */}
         {hints[currentQIndex] && (
-          <div style={{ marginTop: '26px', padding: '20px', borderRadius: '14px', background: 'rgba(245, 158, 11, 0.12)', border: '1px solid rgba(245, 158, 11, 0.35)', color: '#f59e0b', fontSize: '0.95rem', lineHeight: 1.6 }}>
+          <div style={{ marginTop: '26px', padding: '20px', borderRadius: '12px', background: 'rgba(245, 158, 11, 0.12)', border: '1px solid rgba(245, 158, 11, 0.35)', color: '#f59e0b', fontSize: '0.9rem', lineHeight: 1.6 }}>
             {hints[currentQIndex]}
           </div>
         )}
 
-        {/* Instant Step-by-Step Explanation */}
+        {/* Step-by-Step Explanation */}
         {showExplanation[currentQIndex] && (
-          <div style={{ marginTop: '26px', padding: '24px', borderRadius: '16px', background: 'rgba(168, 85, 247, 0.12)', border: '1px solid rgba(168, 85, 247, 0.35)' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: 'var(--accent-violet)', fontWeight: 700, marginBottom: '10px' }}>
-              <Sparkles size={18} />
-              <span>Explanation & Concept Notes</span>
+          <div style={{ marginTop: '26px', padding: '24px', borderRadius: '12px', background: 'rgba(147, 51, 234, 0.15)', border: '1px solid rgba(147, 51, 234, 0.35)' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: 'var(--color-grape-light)', fontWeight: 800, fontFamily: 'var(--font-display)', textTransform: 'uppercase', marginBottom: '10px' }}>
+              <Sparkles size={16} />
+              <span>EXPLANATION & CONCEPT NOTES</span>
             </div>
-            <p style={{ fontSize: '0.98rem', lineHeight: 1.65, color: '#e2e8f0' }}>
+            <p style={{ fontSize: '0.95rem', lineHeight: 1.65, color: '#e2e8f0' }}>
               {currentQ.explanation}
             </p>
           </div>
         )}
 
         {/* Bottom Actions */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '32px', paddingTop: '24px', borderTop: '1px solid var(--border-color)' }}>
-          <button onClick={handleGetHint} className="btn-secondary" style={{ padding: '10px 18px', fontSize: '0.9rem' }}>
-            <Lightbulb size={18} color="#f59e0b" />
-            <span>AI Hint</span>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '32px', paddingTop: '24px', borderTop: '1px solid rgba(255, 255, 255, 0.1)' }}>
+          <button onClick={handleGetHint} className="btn-secondary" style={{ padding: '10px 18px', fontSize: '0.8rem' }}>
+            <Lightbulb size={16} color="#f59e0b" />
+            <span>AI HINT</span>
           </button>
 
           <div style={{ display: 'flex', gap: '14px' }}>
             {currentQIndex + 1 < quiz.questions.length ? (
               <button 
                 onClick={() => setCurrentQIndex(prev => prev + 1)} 
-                className="btn-primary"
+                className="btn-liquid clunk-shimmer"
               >
-                <span>Next Question</span>
-                <ChevronRight size={18} />
+                <span>NEXT QUESTION</span>
+                <ChevronRight size={16} />
               </button>
             ) : (
-              <button onClick={handleSubmitQuiz} className="btn-emerald">
-                <CheckCircle2 size={18} />
-                <span>Submit Practice Quiz</span>
+              <button onClick={handleSubmitQuiz} className="btn-liquid clunk-shimmer">
+                <CheckCircle2 size={16} />
+                <span>SUBMIT PRACTICE QUIZ ↗</span>
               </button>
             )}
           </div>

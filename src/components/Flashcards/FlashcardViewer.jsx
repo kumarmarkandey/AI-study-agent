@@ -47,7 +47,6 @@ export function FlashcardViewer({ deck, onUpdateDeck, onBack }) {
     setCards(updatedCards);
     setSessionReviewed(prev => prev + 1);
 
-    // Save updated deck state
     onUpdateDeck({
       ...deck,
       cards: updatedCards
@@ -59,7 +58,7 @@ export function FlashcardViewer({ deck, onUpdateDeck, onBack }) {
     } else {
       setIsCompleted(true);
       try {
-        confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+        confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 } });
       } catch (e) {
         // Confetti optional
       }
@@ -85,35 +84,35 @@ export function FlashcardViewer({ deck, onUpdateDeck, onBack }) {
 
   if (isCompleted) {
     return (
-      <div className="glass-panel" style={{ padding: '56px', textAlign: 'center', maxWidth: '680px', margin: '40px auto' }}>
+      <div className="clunk-card" style={{ padding: '56px', textAlign: 'center', maxWidth: '680px', margin: '40px auto' }}>
         <div style={{
           width: '80px',
           height: '80px',
           borderRadius: '50%',
-          background: 'linear-gradient(135deg, #10b981 0%, #34d399 100%)',
+          background: 'linear-gradient(135deg, var(--color-grape) 0%, var(--color-grape-deep) 100%)',
           display: 'flex',
           alignItems: 'center',
-          justify: 'center',
+          justifyContent: 'center',
           margin: '0 auto 28px',
-          boxShadow: 'var(--shadow-glow-emerald)'
+          boxShadow: '0 0 30px var(--color-grape-glow)'
         }}>
           <Award size={44} color="white" />
         </div>
-        <h2 style={{ fontSize: '2.2rem', fontWeight: 800, marginBottom: '16px', color: 'white' }}>
-          Deck Review Complete! 🎉
+        <h2 style={{ fontSize: '2.4rem', fontWeight: 900, textTransform: 'uppercase', marginBottom: '16px', color: 'white', fontFamily: 'var(--font-display)' }}>
+          DECK REVIEW COMPLETE! 🎉
         </h2>
         <p style={{ color: 'var(--text-secondary)', marginBottom: '32px', fontSize: '1.05rem', lineHeight: 1.65 }}>
-          You reviewed <strong>{sessionReviewed} cards</strong> in <strong>{deck.title}</strong> using the SuperMemo SM-2 spaced repetition algorithm.
+          You reviewed <strong>{sessionReviewed} cards</strong> in <strong>{deck.title}</strong> using the SuperMemo SM-2 algorithm.
         </p>
 
         <div style={{ display: 'flex', justifyContent: 'center', gap: '18px', flexWrap: 'wrap' }}>
-          <button onClick={onBack} className="btn-primary">
-            <ArrowLeft size={18} />
-            <span>Return to Decks</span>
+          <button onClick={onBack} className="btn-liquid clunk-shimmer">
+            <ArrowLeft size={16} />
+            <span>RETURN TO DECKS ↗</span>
           </button>
           <button onClick={() => { setCurrentIndex(0); setIsFlipped(false); setIsCompleted(false); setSessionReviewed(0); }} className="btn-secondary">
-            <RotateCw size={18} />
-            <span>Review Again</span>
+            <RotateCw size={16} />
+            <span>REVIEW AGAIN</span>
           </button>
         </div>
       </div>
@@ -122,10 +121,10 @@ export function FlashcardViewer({ deck, onUpdateDeck, onBack }) {
 
   if (!currentCard) {
     return (
-      <div className="glass-panel" style={{ padding: '40px', textAlign: 'center' }}>
+      <div className="clunk-card" style={{ padding: '40px', textAlign: 'center' }}>
         <p style={{ color: 'var(--text-secondary)' }}>No cards available in this deck.</p>
         <button onClick={onBack} className="btn-secondary" style={{ marginTop: '20px' }}>
-          Back to Decks
+          BACK TO DECKS
         </button>
       </div>
     );
@@ -134,28 +133,28 @@ export function FlashcardViewer({ deck, onUpdateDeck, onBack }) {
   const progressPercent = Math.round(((currentIndex + 1) / cards.length) * 100);
 
   return (
-    <div style={{ maxWidth: '860px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '28px' }}>
+    <div style={{ maxWidth: '860px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '28px', textAlign: 'left' }}>
       {/* Top Controls Bar */}
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <button onClick={onBack} className="btn-secondary" style={{ gap: '8px' }}>
-          <ArrowLeft size={18} />
-          <span>Exit Session</span>
+          <ArrowLeft size={16} />
+          <span>EXIT SESSION</span>
         </button>
 
         <div style={{ textAlign: 'center' }}>
-          <span style={{ fontSize: '0.96rem', fontWeight: 700, color: 'var(--accent-cyan)' }}>
-            Card {currentIndex + 1} of {cards.length}
+          <span style={{ fontSize: '0.9rem', fontWeight: 800, fontFamily: 'var(--font-display)', textTransform: 'uppercase', color: 'var(--color-grape-light)' }}>
+            CARD {currentIndex + 1} OF {cards.length}
           </span>
         </div>
 
         <button onClick={toggleStar} className="btn-secondary" style={{ padding: '10px 16px' }}>
-          <Star size={20} color={currentCard.starred ? "#f59e0b" : "var(--text-muted)"} fill={currentCard.starred ? "#f59e0b" : "transparent"} />
+          <Star size={18} color={currentCard.starred ? "#f59e0b" : "var(--text-muted)"} fill={currentCard.starred ? "#f59e0b" : "transparent"} />
         </button>
       </div>
 
       {/* Progress Bar */}
-      <div style={{ height: '8px', background: 'rgba(255, 255, 255, 0.08)', borderRadius: '4px', overflow: 'hidden' }}>
-        <div style={{ width: `${progressPercent}%`, height: '100%', background: 'linear-gradient(90deg, #38bdf8, #a855f7)', transition: 'width 0.3s ease' }} />
+      <div style={{ height: '6px', background: 'rgba(255, 255, 255, 0.1)', borderRadius: '3px', overflow: 'hidden' }}>
+        <div style={{ width: `${progressPercent}%`, height: '100%', background: 'linear-gradient(90deg, var(--color-grape), var(--color-grape-light))', transition: 'width 0.3s ease' }} />
       </div>
 
       {/* 3D Flip Flashcard */}
@@ -166,54 +165,54 @@ export function FlashcardViewer({ deck, onUpdateDeck, onBack }) {
       >
         <div className="card-flip-inner">
           {/* FRONT */}
-          <div className="card-face">
+          <div className="card-face" style={{ background: '#0e0e14', border: '1px solid rgba(255, 255, 255, 0.15)' }}>
             <div>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '28px' }}>
-                <span className="badge badge-cyan">{deck.subject}</span>
-                <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>Click or press Space to Flip</span>
+                <span className="badge badge-grape">{deck.subject}</span>
+                <span style={{ fontSize: '0.8rem', fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>SPACEBAR TO FLIP</span>
               </div>
-              <h3 style={{ fontSize: '1.55rem', fontWeight: 700, lineHeight: 1.55, color: 'white' }}>
+              <h3 style={{ fontSize: '1.6rem', fontWeight: 800, lineHeight: 1.5, color: 'white' }}>
                 {currentCard.front}
               </h3>
             </div>
 
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '24px', borderTop: '1px solid var(--border-color)' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '24px', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
               <button 
                 onClick={(e) => { e.stopPropagation(); handleSpeak(currentCard.front); }}
                 className="btn-secondary"
-                style={{ padding: '8px 16px', fontSize: '0.86rem' }}
+                style={{ padding: '8px 16px', fontSize: '0.8rem' }}
               >
-                <Volume2 size={18} />
-                <span>Listen</span>
+                <Volume2 size={16} />
+                <span>LISTEN</span>
               </button>
-              <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                <CornerDownLeft size={16} /> Flip Card
+              <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <CornerDownLeft size={16} /> FLIP CARD
               </span>
             </div>
           </div>
 
           {/* BACK */}
-          <div className="card-face card-face-back">
+          <div className="card-face card-face-back" style={{ background: '#12121c', border: '1px solid var(--color-grape-light)' }}>
             <div>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '28px' }}>
-                <span className="badge badge-violet">Answer & Explanation</span>
-                <span style={{ fontSize: '0.85rem', color: 'var(--accent-violet)', fontWeight: 600 }}>SRS Ease: {currentCard.easeFactor}x</span>
+                <span className="badge badge-grape">ANSWER & EXPLANATION</span>
+                <span style={{ fontSize: '0.8rem', color: 'var(--color-grape-light)', fontWeight: 800, fontFamily: 'var(--font-mono)' }}>SRS EASE: {currentCard.easeFactor}X</span>
               </div>
               <div style={{ fontSize: '1.25rem', lineHeight: 1.7, whiteSpace: 'pre-wrap', color: '#f1f5f9' }}>
                 {currentCard.back}
               </div>
             </div>
 
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '24px', borderTop: '1px solid var(--border-color)' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '24px', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
               <button 
                 onClick={(e) => { e.stopPropagation(); handleSpeak(currentCard.back); }}
                 className="btn-secondary"
-                style={{ padding: '8px 16px', fontSize: '0.86rem' }}
+                style={{ padding: '8px 16px', fontSize: '0.8rem' }}
               >
-                <Volume2 size={18} />
-                <span>Listen Answer</span>
+                <Volume2 size={16} />
+                <span>LISTEN ANSWER</span>
               </button>
-              <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>Rate recall below (1-4)</span>
+              <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>RATE RECALL (1-4)</span>
             </div>
           </div>
         </div>
@@ -226,88 +225,92 @@ export function FlashcardViewer({ deck, onUpdateDeck, onBack }) {
             onClick={() => handleRating(1)} 
             style={{
               padding: '16px 12px',
-              borderRadius: '16px',
+              borderRadius: '12px',
               border: '1px solid rgba(244, 63, 94, 0.4)',
               background: 'rgba(244, 63, 94, 0.15)',
               color: '#f43f5e',
-              fontWeight: 700,
+              fontWeight: 800,
+              fontFamily: 'var(--font-display)',
               cursor: 'pointer',
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
-              gap: '6px',
+              gap: '4px',
               transition: 'all 0.2s ease'
             }}
           >
-            <span style={{ fontSize: '0.98rem' }}>1. Again</span>
-            <span style={{ fontSize: '0.76rem', opacity: 0.8 }}>1 day</span>
+            <span style={{ fontSize: '0.95rem' }}>1. AGAIN</span>
+            <span style={{ fontSize: '0.72rem', opacity: 0.8, fontFamily: 'var(--font-mono)' }}>1 day</span>
           </button>
 
           <button 
             onClick={() => handleRating(2)} 
             style={{
               padding: '16px 12px',
-              borderRadius: '16px',
+              borderRadius: '12px',
               border: '1px solid rgba(245, 158, 11, 0.4)',
               background: 'rgba(245, 158, 11, 0.15)',
               color: '#f59e0b',
-              fontWeight: 700,
+              fontWeight: 800,
+              fontFamily: 'var(--font-display)',
               cursor: 'pointer',
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
-              gap: '6px',
+              gap: '4px',
               transition: 'all 0.2s ease'
             }}
           >
-            <span style={{ fontSize: '0.98rem' }}>2. Hard</span>
-            <span style={{ fontSize: '0.76rem', opacity: 0.8 }}>2 days</span>
+            <span style={{ fontSize: '0.95rem' }}>2. HARD</span>
+            <span style={{ fontSize: '0.72rem', opacity: 0.8, fontFamily: 'var(--font-mono)' }}>2 days</span>
           </button>
 
           <button 
             onClick={() => handleRating(3)} 
             style={{
               padding: '16px 12px',
-              borderRadius: '16px',
-              border: '1px solid rgba(56, 189, 248, 0.4)',
-              background: 'rgba(56, 189, 248, 0.15)',
-              color: '#38bdf8',
-              fontWeight: 700,
+              borderRadius: '12px',
+              border: '1px solid rgba(147, 51, 234, 0.4)',
+              background: 'rgba(147, 51, 234, 0.2)',
+              color: 'var(--color-grape-light)',
+              fontWeight: 800,
+              fontFamily: 'var(--font-display)',
               cursor: 'pointer',
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
-              gap: '6px',
+              gap: '4px',
               transition: 'all 0.2s ease'
             }}
           >
-            <span style={{ fontSize: '0.98rem' }}>3. Good</span>
-            <span style={{ fontSize: '0.76rem', opacity: 0.8 }}>4 days</span>
+            <span style={{ fontSize: '0.95rem' }}>3. GOOD</span>
+            <span style={{ fontSize: '0.72rem', opacity: 0.8, fontFamily: 'var(--font-mono)' }}>4 days</span>
           </button>
 
           <button 
             onClick={() => handleRating(4)} 
             style={{
               padding: '16px 12px',
-              borderRadius: '16px',
+              borderRadius: '12px',
               border: '1px solid rgba(16, 185, 129, 0.4)',
               background: 'rgba(16, 185, 129, 0.15)',
               color: '#10b981',
-              fontWeight: 700,
+              fontWeight: 800,
+              fontFamily: 'var(--font-display)',
               cursor: 'pointer',
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
-              gap: '6px',
+              gap: '4px',
               transition: 'all 0.2s ease'
             }}
           >
-            <span style={{ fontSize: '0.98rem' }}>4. Easy</span>
-            <span style={{ fontSize: '0.76rem', opacity: 0.8 }}>6+ days</span>
+            <span style={{ fontSize: '0.95rem' }}>4. EASY</span>
+            <span style={{ fontSize: '0.72rem', opacity: 0.8, fontFamily: 'var(--font-mono)' }}>6+ days</span>
           </button>
         </div>
       ) : (
-        <div style={{ textAlign: 'center', padding: '16px', color: 'var(--text-muted)', fontSize: '0.92rem' }}>
+        <div style={{ textAlign: 'center', padding: '16px', color: 'var(--text-muted)', fontSize: '0.85rem', fontFamily: 'var(--font-mono)' }}>
           💡 Click card or press <strong>Spacebar</strong> to reveal answer
         </div>
       )}

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Sparkles, ArrowRight, Compass, Database, Box, BrainCircuit, FileText, Bot, Layers, Zap } from "lucide-react";
+import { Sparkles, ArrowRight, Compass, Database, Box, BrainCircuit, FileText, Bot, Layers, Zap, MessageSquareCode } from "lucide-react";
 import AIOrb3D from "../3D/AIOrb3D";
 import "./hero.css";
 
@@ -12,10 +12,11 @@ function Hero() {
         <div className="badge-3d">
           <Zap size={13} className="badge-sparkle" />
           <span>AI-Powered Study Workspace v2.0</span>
+          <span className="live-pulse-dot"></span>
         </div>
 
         <h1 className="hero-title">
-          Master Any Course with <span className="gradient-text">Intelligent AI Workspaces</span>.
+          Master Any Course with <span className="gradient-text">Intelligent AI Workspaces</span>
         </h1>
 
         <p className="hero-description">
@@ -49,7 +50,7 @@ function Hero() {
               <Database size={15} className="stat-icon-cyan" />
               <span className="stat-num">100%</span>
             </div>
-            <span className="stat-label">Cloud Database Sync</span>
+            <span className="stat-label">Cloud Sync</span>
           </div>
 
           <div className="stat-card glass-panel">
@@ -57,7 +58,7 @@ function Hero() {
               <Box size={15} className="stat-icon-indigo" />
               <span className="stat-num">3D</span>
             </div>
-            <span className="stat-label">Interactive Visuals</span>
+            <span className="stat-label">Visual Core</span>
           </div>
 
           <div className="stat-card glass-panel">
@@ -65,20 +66,30 @@ function Hero() {
               <BrainCircuit size={15} className="stat-icon-purple" />
               <span className="stat-num">AI</span>
             </div>
-            <span className="stat-label">Quizzes & Flashcards</span>
+            <span className="stat-label">Quizzes & Cards</span>
           </div>
         </div>
       </div>
 
       <div className="hero-visual glass-card-3d">
         <div className="orb-preview-header">
-          <span className="orb-dot red"></span>
-          <span className="orb-dot yellow"></span>
-          <span className="orb-dot green"></span>
-          <span className="orb-title">AI Holographic Core</span>
+          <div className="orb-dots">
+            <span className="orb-dot red"></span>
+            <span className="orb-dot yellow"></span>
+            <span className="orb-dot green"></span>
+          </div>
+          <div className="orb-status">
+            <span className="status-ping"></span>
+            <span className="orb-title">AI Holographic Engine</span>
+          </div>
         </div>
-        <AIOrb3D isThinking={false} />
+
+        <div className="orb-3d-container">
+          <AIOrb3D isThinking={false} />
+        </div>
+
         <div className="orb-caption">
+          <MessageSquareCode size={14} className="caption-icon" />
           <p className="caption-text">"Ask questions about your notes, formulas, or key concepts."</p>
         </div>
       </div>

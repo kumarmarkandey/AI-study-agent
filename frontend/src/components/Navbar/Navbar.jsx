@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Sparkles, LayoutDashboard, LogIn, UserPlus, Menu, X, Box } from "lucide-react";
+import { LayoutDashboard, LogIn, UserPlus, Menu, X, Sparkles, Globe } from "lucide-react";
 import "./Navbar.css";
 
 function Navbar() {
@@ -9,37 +9,31 @@ function Navbar() {
 
   return (
     <header className="navbar-container">
-      <nav className="navbar glass-panel">
+      <nav className="navbar">
         <Link to="/" className="navbar-logo">
-          <Box className="logo-box-icon" size={20} />
-          <span>StudySphere</span>
-          <span className="logo-ai">AI</span>
-          <span className="badge-3d-tag">PRO</span>
+          <span className="logo-brand">STUDY<span className="logo-red">SPHERE</span></span>
+          <span className="logo-badge">AI</span>
         </Link>
 
-        <div className="navbar-links">
-          <a href="#features">Features</a>
-          <a href="#how-it-works">How It Works</a>
-          <a href="#about">About</a>
-        </div>
-
         <div className="navbar-actions">
+          <div className="lang-select-box">
+            <Globe size={15} className="globe-icon" />
+            <select className="lang-dropdown" aria-label="Language selector">
+              <option value="en">English</option>
+              <option value="hi">Hindi</option>
+            </select>
+          </div>
+
           {token ? (
-            <Link to="/dashboard" className="btn-3d-primary">
+            <Link to="/dashboard" className="btn-netflix-primary btn-nav-action">
               <LayoutDashboard size={16} />
               <span>Workspace</span>
             </Link>
           ) : (
-            <>
-              <Link to="/login" className="login-btn">
-                <LogIn size={16} />
-                <span>Sign In</span>
-              </Link>
-              <Link to="/signup" className="btn-3d-primary">
-                <UserPlus size={16} />
-                <span>Get Started</span>
-              </Link>
-            </>
+            <Link to="/login" className="btn-netflix-primary btn-nav-action">
+              <LogIn size={16} />
+              <span>Sign In</span>
+            </Link>
           )}
         </div>
 
@@ -48,36 +42,27 @@ function Navbar() {
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle menu"
         >
-          {menuOpen ? <X size={20} /> : <Menu size={20} />}
+          {menuOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
       </nav>
 
       {menuOpen && (
         <div className="mobile-menu glass-panel">
-          <a href="#features" className="mobile-link" onClick={() => setMenuOpen(false)}>
-            Features
-          </a>
-          <a href="#how-it-works" className="mobile-link" onClick={() => setMenuOpen(false)}>
-            How It Works
-          </a>
-          <a href="#about" className="mobile-link" onClick={() => setMenuOpen(false)}>
-            About
-          </a>
           <div className="mobile-actions">
             {token ? (
               <Link
                 to="/dashboard"
-                className="btn-3d-primary mobile-btn-full"
+                className="btn-netflix-primary mobile-btn-full"
                 onClick={() => setMenuOpen(false)}
               >
                 <LayoutDashboard size={18} />
-                <span>Go to Dashboard</span>
+                <span>Go to Workspace</span>
               </Link>
             ) : (
               <>
                 <Link
                   to="/login"
-                  className="btn-3d-secondary mobile-btn-full"
+                  className="btn-netflix-primary mobile-btn-full"
                   onClick={() => setMenuOpen(false)}
                 >
                   <LogIn size={18} />
@@ -85,11 +70,11 @@ function Navbar() {
                 </Link>
                 <Link
                   to="/signup"
-                  className="btn-3d-primary mobile-btn-full"
+                  className="btn-netflix-secondary mobile-btn-full"
                   onClick={() => setMenuOpen(false)}
                 >
                   <UserPlus size={18} />
-                  <span>Get Started</span>
+                  <span>Create Free Account</span>
                 </Link>
               </>
             )}

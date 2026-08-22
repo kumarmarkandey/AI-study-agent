@@ -1,98 +1,88 @@
-import { Link } from "react-router-dom";
-import { Sparkles, ArrowRight, Compass, Database, Box, BrainCircuit, FileText, Bot, Layers, Zap, MessageSquareCode } from "lucide-react";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { ChevronRight, Sparkles, ShieldCheck, Zap } from "lucide-react";
 import AIOrb3D from "../3D/AIOrb3D";
 import "./hero.css";
 
 function Hero() {
+  const [email, setEmail] = useState("");
+  const navigate = useNavigate();
   const token = localStorage.getItem("token");
 
+  const handleGetStarted = (e) => {
+    e.preventDefault();
+    if (token) {
+      navigate("/dashboard");
+    } else {
+      navigate(`/signup?email=${encodeURIComponent(email)}`);
+    }
+  };
+
   return (
-    <section className="hero">
-      <div className="hero-content">
-        <div className="badge-3d">
-          <Zap size={13} className="badge-sparkle" />
-          <span>AI-Powered Study Workspace v2.0</span>
-          <span className="live-pulse-dot"></span>
-        </div>
-
-        <h1 className="hero-title">
-          Master Any Course with <span className="gradient-text">Intelligent AI Workspaces</span>
-        </h1>
-
-        <p className="hero-description">
-          Transform static notes into interactive learning environments. Generate smart multiple-choice 
-          quizzes, master key terms with 3D flashcards, and query your material with a context-aware AI tutor.
-        </p>
-
-        <div className="hero-feature-tags">
-          <span className="feature-pill"><FileText size={13} /> Notes Vault</span>
-          <span className="feature-pill"><Bot size={13} /> AI Tutor</span>
-          <span className="feature-pill"><BrainCircuit size={13} /> Smart Quizzes</span>
-          <span className="feature-pill"><Layers size={13} /> 3D Flashcards</span>
-          <span className="feature-pill"><Database size={13} /> Cloud Sync</span>
-        </div>
-
-        <div className="hero-buttons">
-          <Link to={token ? "/dashboard" : "/signup"} className="btn-3d-primary">
-            <span>{token ? "Open Workspace" : "Get Started Free"}</span>
-            <ArrowRight size={18} />
-          </Link>
-
-          <a href="#features" className="btn-3d-secondary">
-            <Compass size={18} />
-            <span>Explore Platform</span>
-          </a>
-        </div>
-
-        <div className="hero-stats">
-          <div className="stat-card glass-panel">
-            <div className="stat-icon-hdr">
-              <Database size={15} className="stat-icon-cyan" />
-              <span className="stat-num">100%</span>
-            </div>
-            <span className="stat-label">Cloud Sync</span>
+    <section className="hero-netflix">
+      <div className="hero-vignette-overlay"></div>
+      
+      <div className="hero-container">
+        <div className="hero-text-content">
+          <div className="netflix-tag">
+            <Zap size={14} className="tag-icon" />
+            <span>AI-POWERED ACADEMIC ENGINE 2.0</span>
           </div>
 
-          <div className="stat-card glass-panel">
-            <div className="stat-icon-hdr">
-              <Box size={15} className="stat-icon-indigo" />
-              <span className="stat-num">3D</span>
-            </div>
-            <span className="stat-label">Visual Core</span>
-          </div>
+          <h1 className="netflix-hero-title">
+            Unlimited Knowledge, AI Tutoring & 3D Study Workspaces.
+          </h1>
 
-          <div className="stat-card glass-panel">
-            <div className="stat-icon-hdr">
-              <BrainCircuit size={15} className="stat-icon-purple" />
-              <span className="stat-num">AI</span>
+          <p className="netflix-hero-subtitle">
+            Master any course material faster. Interactive notes, 3D flashcards & instant automated quizzes.
+          </p>
+
+          <form className="netflix-cta-form" onSubmit={handleGetStarted}>
+            <p className="cta-prompt-text">
+              Ready to excel in your studies? Enter your email to create or launch your workspace.
+            </p>
+
+            <div className="input-group-netflix">
+              <input
+                type="email"
+                placeholder="Email address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required={!token}
+                className="netflix-email-input"
+              />
+              <button type="submit" className="btn-netflix-primary btn-get-started">
+                <span>{token ? "Open Workspace" : "Get Started"}</span>
+                <ChevronRight size={22} />
+              </button>
             </div>
-            <span className="stat-label">Quizzes & Cards</span>
+          </form>
+
+          <div className="hero-trust-badges">
+            <span><ShieldCheck size={14} /> Instant Cloud Sync</span>
+            <span className="badge-divider">•</span>
+            <span><Sparkles size={14} /> Active Recall Workflows</span>
+            <span className="badge-divider">•</span>
+            <span>Zero Setup Required</span>
+          </div>
+        </div>
+
+        <div className="hero-preview-frame">
+          <div className="preview-top-bar">
+            <div className="window-controls">
+              <span className="control-dot red"></span>
+              <span className="control-dot yellow"></span>
+              <span className="control-dot green"></span>
+            </div>
+            <span className="window-title">StudySphere Holographic Engine</span>
+          </div>
+          <div className="orb-wrapper-hero">
+            <AIOrb3D isThinking={false} />
           </div>
         </div>
       </div>
 
-      <div className="hero-visual glass-card-3d">
-        <div className="orb-preview-header">
-          <div className="orb-dots">
-            <span className="orb-dot red"></span>
-            <span className="orb-dot yellow"></span>
-            <span className="orb-dot green"></span>
-          </div>
-          <div className="orb-status">
-            <span className="status-ping"></span>
-            <span className="orb-title">AI Holographic Engine</span>
-          </div>
-        </div>
-
-        <div className="orb-3d-container">
-          <AIOrb3D isThinking={false} />
-        </div>
-
-        <div className="orb-caption">
-          <MessageSquareCode size={14} className="caption-icon" />
-          <p className="caption-text">"Ask questions about your notes, formulas, or key concepts."</p>
-        </div>
-      </div>
+      <div className="netflix-bottom-curve"></div>
     </section>
   );
 }
